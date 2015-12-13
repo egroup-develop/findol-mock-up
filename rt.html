@@ -7,18 +7,24 @@
 	</head>
 		<body>
 			<div id="wrapper">
-				<div id="tabmenu">
-				    <div id="tab">
-				        <a href="#tab1">TAB1</a>
-				        <a href="#tab2">TAB2</a>
+				<ul class="tabs">
+				  <li>
+				    <input type="radio" name="tabs" id="tab1" checked />
+				    <label for="tab1">タブ 1</label>
+				    <div id="tab-content1" class="tab-content">
+				      <p>コンテンツ 1<br />
+				        Favori designです。</p>
 				    </div>
-				    <div id="tab_contents">
-				        <ul>
-				            <li id="tab1" name="tab1">"No1" this is tab container.you can write anythig.</li>
-				            <li id="tab2" name="tab2">"No2" this is tab container.you can write anythig.</li>
-				        </ul>
+				  </li>
+				  <li>
+				    <input type="radio" name="tabs" id="tab2" />
+				    <label for="tab2">タブ 2</label>
+				    <div id="tab-content2" class="tab-content">
+				      <p>コンテンツ 2<br />
+				        JSを使わずにラジオボタンでタブが実装できちゃいます。</p>
 				    </div>
-				</div>
+				  </li>
+				</ul>
 			</div>
 		</body>
 	</html>

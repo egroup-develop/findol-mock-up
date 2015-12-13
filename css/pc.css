@@ -105,49 +105,60 @@ h1 img{
 
 
 /*rt css*/
-#tabmenu{
-    padding:0px;
-    margin:0px;
-    color:#333;
-    font-size: 42px;
-    width:870px;
-    position:relative;
+.tabs {
+    width: 650px;
+    float: none;
+    list-style: none;
+    position: relative;
+    margin: 80px 0 0 10px;
+    text-align: left;
 }
-
-#tabmenu div#tab{
-    position: absolute;
-    top:0px;
-    left:0px;
-}
-#tabmenu div#tab a{
+.tabs li {
     float: left;
-    height: 100px;
-    line-height: 40px;
-    text-align: center;
-    width: 435px;
     display: block;
-    text-decoration:none;
-    color:#333;
-    background:#eee;
 }
-#tabmenu div#tab a:hover{
-    background:#000;
-    color:#fff;
+.tabs input[type="radio"] {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
 }
-div#tab_contents{
-    width:870px;
-    overflow:
-    hidden;clear:both;
+.tabs label {
+    display: block;
+    padding: 14px 21px;
+    border-radius: 2px 2px 0 0;
+    font-size: 16px;
+    font-weight: normal;
+    text-transform: uppercase;
+    background: #E67E22;
+    cursor: pointer;
+    position: relative;
+    top: 4px;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
-div#tab_contents ul{
-    width:2500px;
-    padding:0px;
-    margin:0px;
+.tabs label:hover {
+    background-color: #EC5F00;
 }
-div#tab_contents ul li{
-    float: left;
-    width:870px;
-    list-style-type:none;
-    padding:60px  20px  20px 20px;
-    background:#fff;
+.tabs .tab-content {
+    z-index: 2;
+    display: none;
+    overflow: hidden;
+    width: 100%;
+    font-size: 17px;
+    line-height: 1.8em;
+    padding: 25px;
+    position: absolute;
+    top: 53px;
+    left: 0;
+    background: #E85C00;
+}
+.tabs [id^="tab"]:checked + label {
+    top: 0;
+    padding-top: 17px;
+    background: #E85C00;
+}
+.tabs [id^="tab"]:checked ~ [id^="tab-content"] {
+ display: block;
 }
