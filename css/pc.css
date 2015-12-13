@@ -199,11 +199,13 @@ h1 img{
 
 .name{
 	font-size: 35px;
+	padding-left: 20px;
 
 }
 
 .unit{
 	font-size: 20px;
+	padding-left: 20px;
 }
 
 .rt_button{
