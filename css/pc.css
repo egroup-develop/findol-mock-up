@@ -297,13 +297,13 @@ text-decoration: none;
 .recommend{
 	background-image:url("../img/recommend_back.png");
 	margin: 30px;
-	width:100px;
+	width:250px;
 	height: 100%;
 	float: left;
 }
 
 .recommend p{
-	font-size: 30px;
+	font-size: 25px;
 	padding-top: 8px;
 	text-align: center;
 }
