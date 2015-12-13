@@ -297,7 +297,7 @@ text-decoration: none;
 .recommend{
 	background-image:url("../img/recommend_back.png");
 	margin: 30px;
-	width:70%;
+	width:100px;
 	height: 100%;
 	float: left;
 }
