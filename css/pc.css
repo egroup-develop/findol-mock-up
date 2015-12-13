@@ -9,13 +9,16 @@ p{
 	font-family:  "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, Meiryo, sans-serif;
 }
 
-/*main*/
 #wrapper{
 	width:970px;
 }
 
 h1 img{
 	width:95%;
+}
+
+.clear{
+	clear:both;
 }
 
 /*si css*/
@@ -38,10 +41,6 @@ h1 img{
 .sort p{
 	font-size: 25px;
 	text-align: center;
-}
-
-.clear{
-	clear:both;
 }
 
 #button{
@@ -105,3 +104,50 @@ h1 img{
 }
 
 
+/*rt css*/
+#tabmenu{
+    padding:0px;
+    margin:0px;
+    color:#333;
+    font-size: 42px;
+    width:870px;
+    position:relative;
+}
+
+#tabmenu div#tab{
+    position: absolute;
+    top:0px;
+    left:0px;
+}
+#tabmenu div#tab a{
+    float: left;
+    height: 100px;
+    line-height: 40px;
+    text-align: center;
+    width: 435px;
+    display: block;
+    text-decoration:none;
+    color:#333;
+    background:#eee;
+}
+#tabmenu div#tab a:hover{
+    background:#000;
+    color:#fff;
+}
+div#tab_contents{
+    width:870px;
+    overflow:
+    hidden;clear:both;
+}
+div#tab_contents ul{
+    width:2500px;
+    padding:0px;
+    margin:0px;
+}
+div#tab_contents ul li{
+    float: left;
+    width:870px;
+    list-style-type:none;
+    padding:60px  20px  20px 20px;
+    background:#fff;
+}
