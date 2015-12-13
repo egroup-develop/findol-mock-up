@@ -110,7 +110,6 @@ h1 img{
     float: none;
     list-style: none;
     position: relative;
-    margin: 80px 0 0 10px;
     text-align: left;
 }
 .tabs li {
@@ -126,7 +125,7 @@ h1 img{
     display: block;
     padding: 14px 21px;
     border-radius: 2px 2px 0 0;
-    font-size: 16px;
+    font-size: 25px;
     font-weight: normal;
     text-transform: uppercase;
     background: #E67E22;
@@ -137,6 +136,7 @@ h1 img{
     -moz-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
+    width: 375px;
 }
 .tabs label:hover {
     background-color: #EC5F00;
