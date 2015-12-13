@@ -191,6 +191,7 @@ text-decoration: none;
 .ranking{
 	margin: 30px auto;
 	width: 620px;
+	font-family:  "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, Meiryo, sans-serif;
 }
 .rt_img{
 	float:left;
