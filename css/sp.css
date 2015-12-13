@@ -279,11 +279,11 @@ text-decoration: none;
 #footer {
     position: fixed;
     bottom: 0;
-    width: 100px;
-    height: 100px;
+    width: 75px;
+    height: 75px;
     text-align: right;
     margin-bottom: 50px;
-    margin-left: 200px;
+    margin-left: 250px;
 }
 
 /*rl css*/
