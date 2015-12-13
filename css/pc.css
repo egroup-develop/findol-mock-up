@@ -183,3 +183,35 @@ h1 img{
 	 background-color: #ffcd52;
 	 top: 4px;
 }
+
+.rt_img{
+	float:left;
+}
+
+.idol_name{
+	float: left;
+}
+
+.name{
+	font-size: 35px;
+}
+
+.unit{
+	font-size: 20px;
+}
+
+.rt_button{
+	width:355px;
+	position: relative;
+	background-color: #6edaf4;
+	border-radius: 4px;
+	color: #fff;
+	line-height: 52px;
+	-webkit-transition: none;
+	transition: none;
+	box-shadow: 0 3px 0 #4faac0;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+	font-size: 35px;
+	text-align: center;
+	margin:20px auto;
+}
