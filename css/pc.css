@@ -151,6 +151,7 @@ h1 img{
     position: absolute;
     top: 53px;
     background: #E85C00;
+    left: 0;
 }
 .tabs [id^="tab"]:checked + label {
     top: 0;
