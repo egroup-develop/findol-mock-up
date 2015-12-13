@@ -137,6 +137,8 @@ h1 img{
     transition: all 0.2s ease-in-out;
     width: 435px;
     height: 53px;
+    text-align: center;
+    padding-top: 15px;
 }
 .tabs label:hover {
     background-color: #EC5F00;
@@ -153,9 +155,6 @@ h1 img{
     top: 53px;
     background: #fff;
     left: 0;
-    text-align: center;
-    padding-top: 15px;
-
 }
 .tabs [id^="tab"]:checked + label {
     top: 0;
