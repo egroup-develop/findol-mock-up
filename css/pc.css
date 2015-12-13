@@ -160,6 +160,7 @@ h1 img{
     top: 0;
     padding-top: 20px;
     background: #fff;
+    color: #00d3de;
 }
 .tabs [id^="tab"]:checked ~ [id^="tab-content"] {
  display: block;
