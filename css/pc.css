@@ -327,3 +327,8 @@ text-decoration: none;
 	font-weight: bold;
 	color:#fff;
 }
+
+#img_box{
+	width:860px;
+	margin-top:30px;
+}
