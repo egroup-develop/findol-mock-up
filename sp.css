@@ -22,13 +22,11 @@ h1 img{
 #findol p{
 	font-size: 25px;
 	text-align: center;
-
 }
 
 #sort_box{
 	width:374px;
 	margin:20px auto;
-
 }
 
 .sort{
@@ -36,10 +34,10 @@ h1 img{
 	margin-right: 25px;
 	width: 160px;
 }
+
 .sort p{
 	font-size: 25px;
 	text-align: center;
-
 }
 
 .clear{
@@ -62,7 +60,6 @@ h1 img{
 	font-size: 25px;
 	text-align: center;
 	margin:0 auto;
-
 }
 
 #back{
@@ -80,7 +77,6 @@ h1 img{
 	font-size: 18px;
 	text-align: center;
 	margin:0 12px;
-
 }
 
 
@@ -98,7 +94,6 @@ h1 img{
 	float: left;
 	font-size: 18px;
 	text-align: center;
-	
 }
 
 #button_side{
