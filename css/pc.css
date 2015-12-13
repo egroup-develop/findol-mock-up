@@ -295,7 +295,7 @@ text-decoration: none;
 }
 
 .recommend{
-	background-image: ../img/recommend_back.png;
+	background-image:(../img/recommend_back.png);
 	margin: 30px;
 	width:372px;
 }
