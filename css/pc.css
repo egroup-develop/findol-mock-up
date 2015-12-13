@@ -140,7 +140,7 @@ h1 img{
     padding-top: 15px;
 }
 .tabs label:hover {
-    background-color: #EC5F00;
+    background-color: #fff;
 }
 .tabs .tab-content {
     z-index: 2;
