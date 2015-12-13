@@ -105,14 +105,6 @@ h1 img{
 
 
 /*rt css*/
-#body {
-    padding: 20px;
-    text-align: left;
-    font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
-    color: #fff;
-    background: #F39C12;
-}
-
 .tabs {
     width: 870px;
     float: none;
