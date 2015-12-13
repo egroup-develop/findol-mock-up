@@ -138,6 +138,7 @@ h1 img{
     height: 53px;
     text-align: center;
     padding-top: 15px;
+    color: #333
 }
 .tabs label:hover {
     background-color: #fff;
