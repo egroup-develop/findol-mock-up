@@ -337,6 +337,6 @@ text-decoration: none;
 	width:30%;
 }
 
-#img_box img{
+.img_box img{
 	float: left;
 }
