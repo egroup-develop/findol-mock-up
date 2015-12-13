@@ -184,6 +184,9 @@ h1 img{
 	 top: 4px;
 }
 
+.ranking{
+	text-align: center;
+}
 .rt_img{
 	float:left;
 }
