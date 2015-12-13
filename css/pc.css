@@ -136,6 +136,7 @@ h1 img{
     -o-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
     width: 435px;
+    height: 53px;
 }
 .tabs label:hover {
     background-color: #EC5F00;
