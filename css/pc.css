@@ -144,9 +144,10 @@ text-decoration: none;
     padding-top: 15px;
     color: #fff;
 }
-.tabs label:hover {
+/*.tabs label:hover {
     background-color: #fff;
-}
+}*/
+
 .tabs .tab-content {
     z-index: 2;
     display: none;
@@ -163,15 +164,15 @@ text-decoration: none;
 .tabs [id^="tab1"]:checked + label {
     top: 0;
     padding-top: 20px;
-    background: #fff;
-    color: #00d3de;
+    background-color: #00d3de;
+    color: #fff;
 }
 
 .tabs [id^="tab2"]:checked + label {
     top: 0;
     padding-top: 20px;
-    background: #fff;
-    color: #ffcd52;
+    background-color: #ffcd52;
+    color: #fff;
 }
 
 .tabs [id^="tab"]:checked ~ [id^="tab-content"] {
