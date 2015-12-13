@@ -116,15 +116,18 @@ text-decoration: none;
     position: relative;
     text-align: left;
 }
+
 .tabs li {
     float: left;
     display: block;
 }
+
 .tabs input[type="radio"] {
     position: absolute;
     top: -9999px;
     left: -9999px;
 }
+
 .tabs label {
     display: block;
     border-radius: 2px 2px 0 0;
@@ -144,9 +147,6 @@ text-decoration: none;
     padding-top: 15px;
     color: #fff;
 }
-/*.tabs label:hover {
-    background-color: #fff;
-}*/
 
 .tabs .tab-content {
     z-index: 2;
@@ -161,6 +161,7 @@ text-decoration: none;
     background: #efefef;
     left: 0;
 }
+
 .tabs [id^="tab1"]:checked + label {
     top: 0;
     padding-top: 20px;
@@ -294,6 +295,7 @@ text-decoration: none;
     margin-left: 745px;
 }
 
+/*rl css*/
 .recommend{
 	background-image:url("../img/recommend_back.png");
 	margin: 20px;
