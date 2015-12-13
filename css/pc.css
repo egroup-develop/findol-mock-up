@@ -127,7 +127,6 @@ h1 img{
     font-size: 25px;
     font-weight: normal;
     text-transform: uppercase;
-    background: #00d3de;
     cursor: pointer;
     position: relative;
     top: 4px;
@@ -163,4 +162,12 @@ h1 img{
 }
 .tabs [id^="tab"]:checked ~ [id^="tab-content"] {
  display: block;
+}
+
+#tab1{
+	 background: #00d3de;
+}
+
+#tab2{
+	 background: #ffcd52;
 }
