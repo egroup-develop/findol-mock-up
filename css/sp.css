@@ -21,6 +21,10 @@ h1 img{
 	clear:both;
 }
 
+a {
+text-decoration: none;
+}
+
 /*si css*/
 #findol p{
 	font-size: 25px;
@@ -184,6 +188,7 @@ h1 img{
 	width: 330px;
 	font-family:  "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, Meiryo, sans-serif;
 }
+
 .rt_img{
 	float:left;
 }
@@ -195,13 +200,13 @@ h1 img{
 }
 
 .name{
-	font-size: 35px;
+	font-size: 15px;
 	padding-left: 20px;
 	font-weight: bold;
 }
 
 .unit{
-	font-size: 20px;
+	font-size: 12px;
 	padding-left: 20px;
 	padding-top: 18px;
 }
