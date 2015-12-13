@@ -311,3 +311,18 @@ text-decoration: none;
 	padding-top: 5px;
 	text-align: center;
 }
+
+/*pl css*/
+
+#title{
+	background-color: #ff7d7d;
+	width:860px;
+	height:75px;
+}
+
+#title p{
+	font-size: 35px;
+	padding-left: 30px;
+	padding-top: 10px;
+	font-weight: bold;
+}
