@@ -127,7 +127,7 @@ h1 img{
     font-size: 25px;
     font-weight: normal;
     text-transform: uppercase;
-    background: #E67E22;
+    background: #00d3de;
     cursor: pointer;
     position: relative;
     top: 4px;
@@ -151,13 +151,16 @@ h1 img{
     padding: 25px;
     position: absolute;
     top: 53px;
-    background: #E85C00;
+    background: #fff;
     left: 0;
+    text-align: center;
+    padding-top: 15px;
+
 }
 .tabs [id^="tab"]:checked + label {
     top: 0;
-    padding-top: 25px;
-    background: #E85C00;
+    padding-top: 20px;
+    background: #fff;
 }
 .tabs [id^="tab"]:checked ~ [id^="tab-content"] {
  display: block;
