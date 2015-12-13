@@ -21,6 +21,10 @@ h1 img{
 	clear:both;
 }
 
+a {
+text-decoration: none;
+}
+
 /*si css*/
 #findol p{
 	font-size: 35px;
