@@ -299,6 +299,7 @@ text-decoration: none;
 	margin: 30px;
 	width:372px;
 	height: 100%;
+	float: left;
 }
 
 .recommend p{
