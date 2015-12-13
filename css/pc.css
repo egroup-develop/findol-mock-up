@@ -210,7 +210,23 @@ h1 img{
 	padding-top: 18px;
 }
 
-.rt_button{
+#rt_button1{
+	width:355px;
+	position: relative;
+	background-color: #ffce42;
+	border-radius: 4px;
+	color: #fff;
+	line-height: 52px;
+	-webkit-transition: none;
+	transition: none;
+	box-shadow: 0 3px 0 #ffbc18;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+	font-size: 35px;
+	text-align: center;
+	margin:20px 20px;
+}
+
+#rt_button2{
 	width:355px;
 	position: relative;
 	background-color: #6edaf4;
@@ -220,6 +236,38 @@ h1 img{
 	-webkit-transition: none;
 	transition: none;
 	box-shadow: 0 3px 0 #4faac0;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+	font-size: 35px;
+	text-align: center;
+	margin:20px 20px;
+}
+
+#rt_button3{
+	width:355px;
+	position: relative;
+	background-color: #d7b9ff;
+	border-radius: 4px;
+	color: #fff;
+	line-height: 52px;
+	-webkit-transition: none;
+	transition: none;
+	box-shadow: 0 3px 0 #ab93cb;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+	font-size: 35px;
+	text-align: center;
+	margin:20px 20px;
+}
+
+#rt_button45{
+	width:355px;
+	position: relative;
+	background-color: #ff7d7d;
+	border-radius: 4px;
+	color: #fff;
+	line-height: 52px;
+	-webkit-transition: none;
+	transition: none;
+	box-shadow: 0 3px 0 #ff4a4a;
 	text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
 	font-size: 35px;
 	text-align: center;
