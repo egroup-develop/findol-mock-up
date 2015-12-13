@@ -181,22 +181,6 @@ text-decoration: none;
 #tab1{
 	 background-color: #00d3de;
 	 top: 4px;
-	 display: block;
-	 border-radius: 2px 2px 0 0;
-	 font-size: 25px;
-	 font-weight: normal;
-	 text-transform: uppercase;
-	 cursor: pointer;
-	 position: relative;
-	 -webkit-transition: all 0.2s ease-in-out;
-	 -moz-transition: all 0.2s ease-in-out;
-	 -o-transition: all 0.2s ease-in-out;
-	 transition: all 0.2s ease-in-out;
-	 width: 435px;
-	 height: 53px;
-	 text-align: center;
-	 padding-top: 15px;
-	 color: #fff;
 }
 
 #tab2{
