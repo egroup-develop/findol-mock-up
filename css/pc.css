@@ -334,5 +334,9 @@ text-decoration: none;
 }
 
 .image{
-	width:70%;
+	width:50%;
+}
+
+#img_box img{
+	float: left;
 }
