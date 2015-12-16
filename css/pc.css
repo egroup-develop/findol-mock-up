@@ -294,7 +294,10 @@ text-decoration: none;
     width: 970px;
     background-color: #efefef;
     box-shadow:rgba(113, 135, 164, 0.309804) 0px -2px 9px 1px;
-    text-align: center;
+}
+
+#footer_btn{
+		margin:0 auto;
 }
 
 #return_dl{
@@ -312,7 +315,6 @@ text-decoration: none;
 	text-align: center;
 	font-weight: bold;
 	float:left;
-	margin:0 auto;
 }
 
 #return_si{
@@ -330,8 +332,6 @@ text-decoration: none;
 	text-align: center;
 	font-weight: bold;
 	float:left;
-	margin:0 auto;
-
 }
 
 
