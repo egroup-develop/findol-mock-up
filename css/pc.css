@@ -40,9 +40,7 @@ text-decoration: none;
 	float: left;
 	margin-left: 50px;
 	width: 300px;
-	box-shadow:0 0 5px #fff, 0 0 5px #ccc, 0 0 1px #aaa;
-    -webkit-box-shadow:0 0 5px #fff, 0 0 5px #ccc, 0 0 1px #aaa;
-    -moz-box-shadow:0 0 5px #fff, 0 0 5px #ccc, 0 0 1px #aaa;
+	box-shadow: 0 1px 4px 0 rgba(0,0,0,.37);
 }
 
 .sort p{
