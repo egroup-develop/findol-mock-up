@@ -297,7 +297,8 @@ text-decoration: none;
 }
 
 #footer_btn{
-		margin:0 auto;
+	width:900px;
+	margin:0 auto;
 }
 
 #return_dl{
