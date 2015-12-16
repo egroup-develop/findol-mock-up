@@ -305,6 +305,8 @@ text-decoration: none;
 	width:250px;
 	height: 100%;
 	float: left;
+	box-shadow:rgba(220, 222, 224, 0.65098) 2px 2px 3px 1px;
+
 }
 
 .recommend p{
