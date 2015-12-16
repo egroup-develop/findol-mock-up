@@ -25,6 +25,9 @@ a {
 text-decoration: none;
 }
 
+a:hover {
+    color: #FF6600;
+}
 /*si css*/
 #findol p{
 	font-size: 35px;
