@@ -276,15 +276,7 @@ text-decoration: none;
 	font-weight: bold;
 }
 
-#footer {
-    position: fixed;
-    bottom: 0;
-    width: 75px;
-    height: 75px;
-    text-align: right;
-    margin-bottom: 50px;
-    margin-left: 260px;
-}
+
 
 /*rl css*/
 .recommend{
