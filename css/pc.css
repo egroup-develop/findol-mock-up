@@ -156,7 +156,6 @@ text-decoration: none;
     width: 870px;
     font-size: 17px;
     line-height: 1.8em;
-    padding: 25px;
     position: absolute;
     top: 53px;
     background: #efefef;
@@ -292,6 +291,7 @@ text-decoration: none;
 	position: fixed;
     bottom: 0;
     height: 80px;
+    width: 970px;
     background-color: #efefef;
     box-shadow:rgba(113, 135, 164, 0.309804) 0px -2px 9px 1px;
 }
