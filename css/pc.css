@@ -288,15 +288,51 @@ text-decoration: none;
 	font-weight: bold;
 }
 
-#footer {
-    position: fixed;
+#footer{
+	position: fixed;
     bottom: 0;
-    width: 122px;
-    height: 100px;
-    text-align: right;
-    margin-bottom: 50px;
-    margin-left: 745px;
+    width: 100%;
+    height: 124px;
+    background-color: #efefef
+    box-shadow:rgba(113, 135, 164, 0.309804) 0px -2px 9px 1px;
 }
+
+#return_dl{
+	width:355px;
+	position: relative;
+	background-color: #ffce42;
+	border-radius: 4px;
+	color: #fff;
+	line-height: 52px;
+	-webkit-transition: none;
+	transition: none;
+	box-shadow:rgba(220, 222, 224, 0.65098) 2px 2px 3px 1px;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+	font-size: 35px;
+	text-align: center;
+	margin:20px 20px;
+	font-weight: bold;
+	float:left;
+}
+
+#return_si{
+	width:355px;
+	position: relative;
+	background-color: #ffce42;
+	border-radius: 4px;
+	color: #fff;
+	line-height: 52px;
+	-webkit-transition: none;
+	transition: none;
+	box-shadow:rgba(220, 222, 224, 0.65098) 2px 2px 3px 1px;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+	font-size: 35px;
+	text-align: center;
+	margin:20px 20px;
+	font-weight: bold;
+	float:left;
+}
+
 
 /*rl css*/
 .recommend{
