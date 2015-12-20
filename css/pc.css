@@ -109,7 +109,7 @@ text-decoration: none;
 }
 
 
-/*rt css*/
+/*rt(dl) css*/
 .tabs {
     width: 870px;
     float: none;
@@ -383,4 +383,38 @@ text-decoration: none;
 
 .image img{
 	float: left;
+}
+
+/*dl css*/
+
+#footer{
+	position: fixed;
+    bottom: 0;
+    height: 80px;
+    width: 970px;
+    background-color: #efefef;
+    box-shadow:rgba(113, 135, 164, 0.309804) 0px -2px 9px 1px;
+}
+
+#footer_btn{
+	width:830px;
+	margin:0 auto;
+}
+
+#return_si_dl{
+    width: 750px;
+    height: 65px;
+    position: relative;
+	background-color: #ff7d7d;
+    border-radius: 4px;
+    color: #fff;
+    -webkit-transition: none;
+    transition: none;
+    box-shadow: rgba(220, 222, 224, 0.65098) 2px 2px 3px 1px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    float: left;
+    margin: 5px 20px;
 }
