@@ -108,12 +108,13 @@ text-decoration: none;
 #howto_findol1{
 	font-size: 35px;
 	padding: 20px 10px;
-	color: #000;
+	color: #fff;
 }
 
 #howto_findol2{
 	font-size: 18px;
 	padding: 10px;
+	color: #fff;
 }
 
 #button_side{
