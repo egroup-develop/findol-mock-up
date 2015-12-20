@@ -506,11 +506,10 @@ display: block\9;
 }
 
 .modal-window .modal-inner {
-    /* position: absolute; */
-    /* top: 50px; */
-    /* left: 50%; */
+    position: absolute;
+    top: 50px;
+    left: 100px; 
     z-index: 20;
-    /* margin-left: -325px; */
     width: 650px;
     overflow-x: hidden;
     border-radius: 2px;
@@ -518,7 +517,6 @@ display: block\9;
     -webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
     padding: 10px;
-    margin: 50px auto;
 }
 
 .modal-window .modal-inner p {
