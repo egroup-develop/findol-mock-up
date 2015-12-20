@@ -387,6 +387,20 @@ text-decoration: none;
 
 /*dl css*/
 
+#daily_ranking{
+	background-color: #ff7d7d;
+	width:860px;
+	height:75px;
+}
+
+#daily_ranking p{
+	font-size: 35px;
+	padding-left: 30px;
+	padding-top: 10px;
+	font-weight: bold;
+	color:#fff;
+}
+
 #footer{
 	position: fixed;
     bottom: 0;
