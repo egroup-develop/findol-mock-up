@@ -379,10 +379,8 @@ text-decoration: none;
 
 .image{
 	width:30%;
-}
-
-.image img{
 	float: left;
+	margin: 20px;
 }
 
 /*dl css*/
