@@ -381,6 +381,7 @@ text-decoration: none;
 	width:30%;
 	float: left;
 	margin:1%;
+	box-shadow:rgba(220, 222, 224, 0.65098) 2px 2px 3px 1px;
 }
 
 /*dl css*/
