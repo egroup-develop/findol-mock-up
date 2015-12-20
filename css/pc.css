@@ -413,6 +413,10 @@ text-decoration: none;
     margin: 0 auto;
 }
 
+.ad_link p{
+	font-size:25px;
+}
+
 
 
 /*dl css*/
