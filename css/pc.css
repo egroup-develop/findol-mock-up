@@ -206,8 +206,8 @@ text-decoration: none;
 }
 
 #ranking_1{
-	margin: 5px auto;
-	width: 620px;
+	margin-bottom:0 10px auto;
+	width: 720px;
 	font-family:  "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, Meiryo, sans-serif;
 	box-shadow:rgba(220, 222, 224, 0.65098) 2px 2px 3px 1px;
 	background-color: #fff;
@@ -215,8 +215,8 @@ text-decoration: none;
 }
 
 .ranking{
-	/*margin: 20px;*/
-	width: 300px;
+	margin: 5px;
+	width: 350px;
 	font-family:  "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, Meiryo, sans-serif;
 	float: left;
 	background-color: #fff;
