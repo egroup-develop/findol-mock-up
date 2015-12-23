@@ -146,7 +146,7 @@ text-decoration: none;
     padding: 5px;
     line-height: 20px;
     background-color: #00d3de;
-    color: #000;
+    color: #efefef;
     width: 475px;
     padding-top: 20px;
 }
@@ -158,7 +158,7 @@ text-decoration: none;
 
 .tabs input[type=radio]:checked + label {
     background-color: #ffcd52;
-    color: #000000;
+    color: #fff;
     width: 475px;
     padding-top: 20px;
 }
