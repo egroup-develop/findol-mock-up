@@ -209,6 +209,7 @@ text-decoration: none;
 	width: 620px;
 	font-family:  "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, Meiryo, sans-serif;
 	box-shadow:rgba(220, 222, 224, 0.65098) 2px 2px 3px 1px;
+	background-color: #fff;
 
 }
 
@@ -217,6 +218,9 @@ text-decoration: none;
 	width: 300px;
 	font-family:  "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, Meiryo, sans-serif;
 	float: left;
+	background-color: #fff;
+	box-shadow:rgba(220, 222, 224, 0.65098) 2px 2px 3px 1px;
+
 }
 
 #rt_img_1{
