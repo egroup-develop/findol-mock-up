@@ -128,14 +128,18 @@ text-decoration: none;
 .tabs {
     position: relative;
     padding: 0;
+    width:800px;
 }
+
 .tabs li {
     list-style: none;
     display: inline-block;
 }
+
 .tabs input[type=radio] {
     display: none;
 }
+
 .tabs label {
     display: block;
     cursor: pointer;
@@ -144,12 +148,14 @@ text-decoration: none;
     background-color: #00d3de;
     color: #000;
 }
+
 .tabs label:hover {
     background-color: #cccccc;
     color: #000000;
 }
+
 .tabs input[type=radio]:checked + label {
-    background-color: #ffffff;
+    background-color: #ffcd52;
     color: #000000;
 }
 

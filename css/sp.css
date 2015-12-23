@@ -102,7 +102,7 @@ text-decoration: none;
 }
 
 /*rt css*/
-.tabs {
+/*.tabs {
     width: 350px;
     float: none;
     list-style: none;
@@ -181,7 +181,7 @@ text-decoration: none;
 #tab2{
 	 background-color: #ffcd52;
 	 top: 4px;
-}
+}*/
 
 .ranking{
 	margin: 25px auto;
