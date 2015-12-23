@@ -204,15 +204,35 @@ text-decoration: none;
 	 top: 4px;
 }
 
-.ranking{
+#ranking_1{
 	margin: 30px auto;
 	width: 620px;
 	font-family:  "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, Meiryo, sans-serif;
+	box-shadow:rgba(220, 222, 224, 0.65098) 2px 2px 3px 1px;
+
+}
+
+.ranking{
+	margin: 20px auto;
+	width: 300px;
+	font-family:  "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, Meiryo, sans-serif;
+	float: left;
+}
+
+#rt_img_1{
+	float:left;
+	width:175px;
 }
 
 .rt_img{
 	float:left;
-	width:175px;
+	width:100px;
+}
+
+#idol_name_1{
+	float: left;
+	margin-left: 20px;
+	margin-top: 10px;
 }
 
 .idol_name{
@@ -221,16 +241,28 @@ text-decoration: none;
 	margin-top: 10px;
 }
 
-.name{
+#name_1{
 	font-size: 35px;
 	padding-left: 20px;
 	font-weight: bold;
 }
 
-.unit{
+.name{
+	font-size: 20px;
+	padding-left: 10px;
+	font-weight: bold;
+}
+
+#unit_1{
 	font-size: 20px;
 	padding-left: 20px;
 	padding-top: 18px;
+}
+
+.unit{
+	font-size: 15px;
+	padding-left: 10px;
+	padding-top: 15px;
 }
 
 #rt_button1{
