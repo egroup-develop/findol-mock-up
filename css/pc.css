@@ -149,6 +149,7 @@ text-decoration: none;
     color: #fff;
     width: 475px;
     padding-top: 20px;
+    top: 4px;
 }
 
 .tabs label:hover {
