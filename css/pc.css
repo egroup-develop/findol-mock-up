@@ -124,7 +124,50 @@ text-decoration: none;
 
 
 /*rt(dl) css*/
+
 .tabs {
+    position: relative;
+    padding: 0;
+}
+.tabs li {
+    list-style: none;
+    display: inline-block;
+}
+.tabs input[type=radio] {
+    display: none;
+}
+.tabs label {
+    display: block;
+    cursor: pointer;
+    padding: 5px;
+    line-height: 20px;
+    background-color: #999999;
+    color: #ffffff;
+}
+.tabs label:hover {
+    background-color: #cccccc;
+    color: #000000;
+}
+.tabs input[type=radio]:checked + label {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.tabs .tab-content {
+    z-index: 2;
+    display: none;
+    overflow: hidden;
+    width: 970px;
+    font-size: 17px;
+    line-height: 1.8em;
+    position: absolute;
+    top: 53px;
+    background: #efefef;
+    left: 0;
+    padding: 40px;
+}
+
+/*.tabs {
     width: 870px;
     float: none;
     list-style: none;
@@ -203,7 +246,7 @@ text-decoration: none;
 #tab2{
 	 background-color: #ffcd52;
 	 top: 4px;
-}
+}*/
 
 #ranking_1{
 	margin: 10px auto 10px auto;
