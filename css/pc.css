@@ -174,6 +174,7 @@ text-decoration: none;
     top: 53px;
     background: #efefef;
     left: 0;
+    padding: 40px;
 }
 
 .tabs [id^="tab1"]:checked + label {
@@ -205,7 +206,7 @@ text-decoration: none;
 }
 
 #ranking_1{
-	margin: 30px auto;
+	margin: 5px auto;
 	width: 620px;
 	font-family:  "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, Meiryo, sans-serif;
 	box-shadow:rgba(220, 222, 224, 0.65098) 2px 2px 3px 1px;
