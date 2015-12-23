@@ -147,7 +147,7 @@ text-decoration: none;
     line-height: 20px;
     background-color: #00d3de;
     color: #000;
-    width: 485px;
+    width: 475px;
 }
 
 .tabs label:hover {
@@ -158,7 +158,7 @@ text-decoration: none;
 .tabs input[type=radio]:checked + label {
     background-color: #ffcd52;
     color: #000000;
-    width: 485px;
+    width: 475px;
 }
 
 .tabs .tab-content {
