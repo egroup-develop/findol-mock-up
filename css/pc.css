@@ -172,7 +172,6 @@ text-decoration: none;
     top: 53px;
     background: #efefef;
     left: 0;
-    padding: 40px;
 }
 
 /*.tabs {
@@ -257,7 +256,7 @@ text-decoration: none;
 }*/
 
 #ranking_1{
-	margin: 10px auto 10px auto;
+	margin: 50px auto 10px auto;
 	width: 720px;
 	height: 200px;
 	font-family:  "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, Meiryo, sans-serif;
