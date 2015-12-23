@@ -146,13 +146,13 @@ text-decoration: none;
     padding: 5px;
     line-height: 20px;
     background-color: #FFDA80;
-    color: #efefef;
+    color: #cccccc;
     width: 475px;
     padding-top: 20px;
 }
 
 .tabs label:hover {
-    background-color: #cccccc;
+    background-color: #ffcd52;
     color: #000000;
 }
 
