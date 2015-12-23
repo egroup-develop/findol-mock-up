@@ -494,7 +494,7 @@ display: block\9;
     width: 650px;
     overflow-x: hidden;
     border-radius: 2px;
-    background-color: rgba(#fff,0.95);
+    background-color:#fff;
     -webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
     padding: 10px;
