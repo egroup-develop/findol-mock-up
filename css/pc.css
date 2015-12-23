@@ -386,7 +386,7 @@ text-decoration: none;
     color: #fff;
     -webkit-transition: none;
     transition: none;
-    box-shadow: rgba(0, 0,0, 0.65098) 2px 2px 3px 1px;
+	box-shadow:rgba(204, 204, 204, 0.6) 5px 5px 5px -1px;
     text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
     font-size: 20px;
     text-align: center;
@@ -495,8 +495,8 @@ display: block\9;
     overflow-x: hidden;
     border-radius: 2px;
     background-color: rgba(255,255,255,0.80);
-    -webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+    -webkit-box-shadow: 0 0 30px rgba(204, 204, 204, 0.6);
+    box-shadow: 0 0 30px rgba(204, 204, 204, 0.6);
     padding: 10px;
 }
 
