@@ -496,10 +496,6 @@ display: block\9;
     padding: 10px;
 }
 
-.modal-window .modal-inner p {
-padding: 0 20px;
-}
-
 .modal-window .modal-close {
 display: block;
 text-indent: -100px;
