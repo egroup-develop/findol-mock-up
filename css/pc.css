@@ -272,6 +272,10 @@ text-decoration: none;
     padding: 10px;
 }
 
+.curled-box :hover{
+	background-color:#FFDA80;
+}
+
 #footer{
 	position: fixed;
     bottom: 0;
