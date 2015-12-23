@@ -262,6 +262,10 @@ text-decoration: none;
     padding: 10px;
 }
 
+#curled-box_1 :hover{
+	background-color:#F2B812;
+}
+
 .curled-box{
 	border-radius: 50%;
     height: 25px;
