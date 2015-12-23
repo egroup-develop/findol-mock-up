@@ -224,6 +224,11 @@ text-decoration: none;
 
 }
 
+#ranking_other{
+	width:620px;
+	margin: 0 auto;
+}
+
 #rt_img_1{
 	float:left;
 	width:175px;
