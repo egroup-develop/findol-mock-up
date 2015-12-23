@@ -275,7 +275,15 @@ text-decoration: none;
 	padding-top: 15px;
 }
 
-#rt_button1{
+#curled-box_1{
+	  border-radius: 50%;
+	  height: 20px;
+	  width: 20px;
+	  background-color: #ffce42;
+	  box-shadow:rgba(220, 222, 224, 0.65098) 2px 2px 3px 1px;
+}
+
+/*#rt_button1{
 	width:355px;
 	position: relative;
 	background-color: #ffce42;
@@ -342,7 +350,7 @@ text-decoration: none;
 	margin:20px 20px;
 	font-weight: bold;
 }
-
+*/
 #footer{
 	position: fixed;
     bottom: 0;
