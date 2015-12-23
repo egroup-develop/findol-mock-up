@@ -253,7 +253,7 @@ text-decoration: none;
 
 #name_1{
 	font-size: 35px;
-	padding-left: 20px;
+	padding:20px 0  0 20px;
 	font-weight: bold;
 }
 
