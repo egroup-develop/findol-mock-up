@@ -146,14 +146,14 @@ text-decoration: none;
     padding: 5px;
     line-height: 20px;
     background-color: #FFDA80;
-    color: #cccccc;
+    color: #fff;
     width: 475px;
     padding-top: 20px;
 }
 
 .tabs label:hover {
     background-color: #ffcd52;
-    color: #000000;
+    color: #fff;
 }
 
 .tabs input[type=radio]:checked + label {
