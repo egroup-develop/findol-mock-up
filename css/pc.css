@@ -281,7 +281,7 @@ text-decoration: none;
 	  width: 50px;
 	  background-color: #ffce42;
 	  box-shadow:rgba(220, 222, 224, 0.65098) 2px 2px 3px 1px;
-	  right: 0;
+	  text-align:right;
 	  padding: 5px;
 }
 
