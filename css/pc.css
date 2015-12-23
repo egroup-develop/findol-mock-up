@@ -287,6 +287,15 @@ text-decoration: none;
     padding: 10px;
 }
 
+.curled-box{
+	border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    background-color: #ffce42;
+    box-shadow: rgba(220, 222, 224, 0.65098) 2px 2px 3px 1px;
+    margin: auto 10px 0px 200px;
+    padding: 10px;
+}
 /*#rt_button1{
 	width:355px;
 	position: relative;
