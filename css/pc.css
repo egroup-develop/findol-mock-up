@@ -281,7 +281,8 @@ text-decoration: none;
 	  width: 50px;
 	  background-color: #ffce42;
 	  box-shadow:rgba(220, 222, 224, 0.65098) 2px 2px 3px 1px;
-	  left: 0;
+	  right: 0;
+	  padding: 5px;
 }
 
 /*#rt_button1{
