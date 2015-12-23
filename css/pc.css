@@ -150,6 +150,7 @@ text-decoration: none;
     width: 475px;
     padding-top: 20px;
     font-size: 25px;
+    height: 25px;
 }
 
 .tabs label:hover {
@@ -162,9 +163,8 @@ text-decoration: none;
     color: #fff;
     width: 475px;
     padding-top: 20px;
-    box-shadow: rgba(220, 222, 224, 0.65098) 2px 2px 3px 1px;
     font-size: 25px;
-    border-bottom: 3px solid #fff;
+    border-bottom: 5px solid #fff;
 }
 
 .tabs .tab-content {
