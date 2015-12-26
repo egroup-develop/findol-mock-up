@@ -4,14 +4,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<title>{{template "contentTitle" .}}</title>-->
+    <title>結果ランキング</title>
     <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <title>{{template "contentTitle" .}}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 </head>
 
 <body>
-<div class="content">
-    {{template "contentBody" .}}
+<div class="content container bg-default">
+    <!--{{template "contentBody" .}}-->
+
+    <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+        <div class="mdl-tabs__tab-bar">
+            <a href="#rt-panel" class="mdl-tabs__tab is-active">結果ランキング</a>
+            <a href="#rl-panel" class="mdl-tabs__tab">オススメ一覧</a>
+        </div>
+
+        <div class="mdl-tabs__panel is-active" id="rt-panel">
+            <ul>
+                {{template "resultContentBody" .}}
+                <li>Eddard</li>
+                <li>Catelyn</li>
+                <li>Robb</li>
+                <li>Sansa</li>
+                <li>Brandon</li>
+                <li>Arya</li>
+                <li>Rickon</li>
+            </ul>
+        </div>
+        <div class="mdl-tabs__panel" id="rl-panel">
+            <ul>
+                <li>Tywin</li>
+                <li>Cersei</li>
+                <li>Jamie</li>
+                <li>Tyrion</li>
+            </ul>
+        </div>
+    </div>
 
     <!-- Accent-colored raised button with ripple -->
     <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
@@ -22,7 +52,9 @@
         <i class="material-icons">add</i>
     </button>
 </div>
+
 <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </body>
 </html>
 {{end}}
