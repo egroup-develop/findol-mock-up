@@ -7,6 +7,8 @@ import (
 	"fmt"
 	"log"
 	"encoding/json"
+	"html/template"
+	"io"
 )
 
 //logirl_details_id_1to328.jsonパース用構造体
@@ -23,8 +25,23 @@ type FeatureDataset struct{
 }
 
 func init() {
-	//ここで指定する階層が基点となる
+	//ここで指定する階層が基点となる. 以降のファイル指定はfindol-mock-up/から見て指定する.
 	http.HandleFunc("/recommend", handler)
+}
+
+//テンプレーティングのためのレンダラ
+func render(v string, w io.Writer, data map[string]interface{}){
+	//独自メソッドをテンプレート側に登録し, テンプレート中でhtmlのエスケープに使っている(|html)
+	funcMap := template.FuncMap{
+		"html": func(text string) template.HTML { return template.HTML(text) },
+	}
+	//ネスト対象の子テンプレートの読み込み. テンプレーティングされたいファイル, 埋め込みたいファイル
+	templates := template.Must(template.New("").Funcs(funcMap).ParseFiles("./recommend/template/base.html", v))
+
+	err := templates.ExecuteTemplate(w, "base", data)
+	if err != nil {
+//		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
 }
 
 /**
@@ -71,4 +88,13 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
 	c.Infof("Requested URL: %v", r.URL)
 	c.Infof("ほげえええええええええええええ" + "\n")
+
+	/***** テンプレーティングここから *****/
+	data := map[string]interface{}{
+		"Title": "ほげほげ",
+		"Body": "ふが<b>もが</b>ふが",
+	}
+	render("./recommend/template/view.html", w, data)
+	/***** テンプレーティングここまで *****/
 }
+
