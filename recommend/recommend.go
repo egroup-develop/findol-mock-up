@@ -83,6 +83,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 //	fmt.Fprintln(w, featureDatasets[len(featureDatasets) - 1].NearlyIndex[0])
 	articleDetailUrl := detailDatasets[0].ArticleDetailUrl
 	imageUrl := detailDatasets[0].ImageUrl[0]
+	name := detailDatasets[0].Name
 
 	//コンソールに出力するログ
 	c := appengine.NewContext(r)
@@ -97,6 +98,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		"Body": "ふが<b>もが</b>ふが",
 		"ArticleDetailUrl": articleDetailUrl,
 		"ImageUrl": imageUrl,
+		"Name": name,
 	}
 	render("./recommend/template/view.html", w, data)
 	/***** テンプレーティングここまで *****/
