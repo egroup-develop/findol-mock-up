@@ -12,46 +12,70 @@
 </head>
 
 <body>
-<div class="content container bg-default">
-    <!--{{template "contentBody" .}}-->
 
-    <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-        <div class="mdl-tabs__tab-bar">
-            <a href="#rt-panel" class="mdl-tabs__tab is-active">結果ランキング</a>
-            <a href="#rl-panel" class="mdl-tabs__tab">オススメ一覧</a>
+<!-- Simple header with scrollable tabs. -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">Title</span>
         </div>
-
-        <div class="mdl-tabs__panel is-active" id="rt-panel">
-            <ul>
-                {{template "resultContentBody" .}}
-                <li>Eddard</li>
-                <li>Catelyn</li>
-                <li>Robb</li>
-                <li>Sansa</li>
-                <li>Brandon</li>
-                <li>Arya</li>
-                <li>Rickon</li>
-            </ul>
+        <!-- Tabs -->
+        <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+            <a href="#scroll-tab-1" class="mdl-layout__tab is-active">Tab 1</a>
+            <a href="#scroll-tab-2" class="mdl-layout__tab">Tab 2</a>
+            <a href="#scroll-tab-3" class="mdl-layout__tab">Tab 3</a>
         </div>
-        <div class="mdl-tabs__panel" id="rl-panel">
-            <ul>
-                <li>Tywin</li>
-                <li>Cersei</li>
-                <li>Jamie</li>
-                <li>Tyrion</li>
-            </ul>
-        </div>
+    </header>
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Title</span>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+        </nav>
     </div>
+    <main class="mdl-layout__content">
+        <section class="mdl-layout__tab-panel is-active" id="scroll-tab-1">
+            <div class="page-content"><!-- Your content goes here -->
+                <div class="content container bg-default">
+                    <!--{{template "contentBody" .}}-->
 
-    <!-- Accent-colored raised button with ripple -->
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-        Button
-    </button>
-    <!-- Colored FAB button -->
-    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
-        <i class="material-icons">add</i>
-    </button>
+                    <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+                        <div class="mdl-tabs__tab-bar">
+                            <a href="#rt-panel" class="mdl-tabs__tab is-active">結果ランキング</a>
+                            <a href="#rl-panel" class="mdl-tabs__tab">オススメ一覧</a>
+                        </div>
+
+                        <div class="mdl-tabs__panel is-active" id="rt-panel">
+                            {{template "resultContentBody" .}}
+                        </div>
+                        <div class="mdl-tabs__panel" id="rl-panel">
+                        </div>
+                    </div>
+
+                    <!-- Accent-colored raised button with ripple -->
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                        Button
+                    </button>
+                    <!-- Colored FAB button -->
+                    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+                        <i class="material-icons">add</i>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="scroll-tab-2">
+            <div class="page-content"><!-- Your content goes here --></div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="scroll-tab-3">
+            <div class="page-content"><!-- Your content goes here --></div>
+        </section>
+    </main>
 </div>
+
+
 
 <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
