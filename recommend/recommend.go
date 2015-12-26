@@ -4,7 +4,7 @@ import (
 	"appengine"
 	"net/http"
 	"io/ioutil"
-	"fmt"
+//	"fmt"
 	"log"
 	"encoding/json"
 	"html/template"
@@ -37,6 +37,7 @@ func render(v string, w io.Writer, data map[string]interface{}){
 	}
 	//ネスト対象の子テンプレートの読み込み. テンプレーティングされたいファイル, 埋め込みたいファイル
 	templates := template.Must(template.New("").Funcs(funcMap).ParseFiles("./recommend/template/base.html", v))
+//	templates := template.Must(template.New("").Funcs(funcMap).ParseFiles("./recommend/template/rt.html", v))
 
 	err := templates.ExecuteTemplate(w, "base", data)
 	if err != nil {
@@ -51,10 +52,6 @@ func render(v string, w io.Writer, data map[string]interface{}){
  * 文字列r.URL.PathはリクエストされたURLのパス部分.
  */
 func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Hello, gopherrrrrrrr!")
-	//スライスしてパスの先頭スラッシュを除去
-	fmt.Fprintf(w, "%s からリクエスト\n", r.URL.Path[1:])
-
 	var detailDatasets []DetailDataset
 	var featureDatasets []FeatureDataset
 
@@ -75,18 +72,21 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	}
 	/***** JSONパースここまで *****/
 
-	fmt.Fprintln(w, detailDatasets)
-	fmt.Fprintln(w, len(detailDatasets))
-	fmt.Fprintln(w, detailDatasets[331].Name)
-	fmt.Fprintln(w, detailDatasets[331].ImageUrl[3])
+//	fmt.Fprintln(w, detailDatasets)
+//	fmt.Fprintln(w, len(detailDatasets))
+//	fmt.Fprintln(w, detailDatasets[331].Name)
+//	fmt.Fprintln(w, detailDatasets[331].ImageUrl[3])
+//
+//	fmt.Fprintln(w, featureDatasets)
+//	fmt.Fprintln(w, len(featureDatasets))
+//	fmt.Fprintln(w, featureDatasets[0].Index)
+//	fmt.Fprintln(w, featureDatasets[len(featureDatasets) - 1].NearlyIndex[0])
 
-	fmt.Fprintln(w, featureDatasets)
-	fmt.Fprintln(w, len(featureDatasets))
-	fmt.Fprintln(w, featureDatasets[0].Index)
-	fmt.Fprintln(w, featureDatasets[len(featureDatasets) - 1].NearlyIndex[0])
-
+	//コンソールに出力するログ
 	c := appengine.NewContext(r)
 	c.Infof("Requested URL: %v", r.URL)
+	//スライスしてパスの先頭スラッシュを除去
+	c.Infof("Requested URL: %v", r.URL.Path[1:])
 	c.Infof("ほげえええええええええええええ" + "\n")
 
 	/***** テンプレーティングここから *****/
