@@ -1,21 +1,25 @@
+<!--タイトル-->
 {{define "contentTitle"}}{{.Title |html}}{{end}}
 
 
+<!--コンテンツボディ-->
 {{define "contentBody"}}
 <h1>{{.Title |html}}</h1>
 <article>{{.Body |html}}</article>
-
 <img src={{.ImageUrl |html}} width="300px">
-
 {{range $i, $v := .NameAry}}
 <p>ああああああああ {{$v}}</p>
 {{end}}
 {{with index .NameAry 2}}
   {{.}}
 {{end}}
+{{range .IndexAry}}
+{{.}}
+{{end}}
 {{end}}
 
 
+<!--結果ランキング-->
 {{define "resultContentBody"}}
 {{range $i, $v := .ImageUrlAry}}
 <style>
@@ -24,6 +28,7 @@
     height: 256px;
     <!--background: url({{$v |html}}) center / cover;-->
     }
+
     .back-image-{{$i}}{
     background: url({{$v |html}}) center / cover;
     }
@@ -48,4 +53,193 @@
 </div>
 <br>
 {{end}}
+{{end}}
+
+
+<!--オススメ一覧-->
+{{define "recommendContentBody"}}
+{{range $i, $v := .ImageUrlAry1}}
+<style>
+    .demo-card-image.mdl-card {
+    width: 256px;
+    height: 256px;
+    }
+    .back-image-1-{{$i}}{
+    background: url({{$v |html}}) center / cover;
+    }
+    .demo-card-image > .mdl-card__actions {
+    height: 52px;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.2);
+    }
+    .demo-card-image__filename {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    }
+</style>
+{{end}}
+{{range $i, $v := .ImageUrlAry2}}
+<style>
+    .demo-card-image.mdl-card {
+    width: 256px;
+    height: 256px;
+    }
+    .back-image-2-{{$i}}{
+    background: url({{$v |html}}) center / cover;
+    }
+    .demo-card-image > .mdl-card__actions {
+    height: 52px;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.2);
+    }
+    .demo-card-image__filename {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    }
+</style>
+{{end}}
+{{range $i, $v := .ImageUrlAry3}}
+<style>
+    .demo-card-image.mdl-card {
+    width: 256px;
+    height: 256px;
+    }
+    .back-image-3-{{$i}}{
+    background: url({{$v |html}}) center / cover;
+    }
+    .demo-card-image > .mdl-card__actions {
+    height: 52px;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.2);
+    }
+    .demo-card-image__filename {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    }
+</style>
+{{end}}
+{{range $i, $v := .ImageUrlAry4}}
+<style>
+    .demo-card-image.mdl-card {
+    width: 256px;
+    height: 256px;
+    }
+    .back-image-4-{{$i}}{
+    background: url({{$v |html}}) center / cover;
+    }
+    .demo-card-image > .mdl-card__actions {
+    height: 52px;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.2);
+    }
+    .demo-card-image__filename {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    }
+</style>
+{{end}}
+{{range $i, $v := .ImageUrlAry5}}
+<style>
+    .demo-card-image.mdl-card {
+    width: 256px;
+    height: 256px;
+    }
+    .back-image-5-{{$i}}{
+    background: url({{$v |html}}) center / cover;
+    }
+    .demo-card-image > .mdl-card__actions {
+    height: 52px;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.2);
+    }
+    .demo-card-image__filename {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    }
+</style>
+{{end}}
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--1-col"></div>
+    {{range $i, $v := .NameAry1}}
+    <div class="mdl-cell mdl-cell--2-col">
+        <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-1-{{$i}}">
+            <div class="mdl-card__title mdl-card--expand"></div>
+            <div class="mdl-card__actions">
+                <span class="demo-card-image__filename">{{$v |html}}</span>
+            </div>
+        </div>
+        <br>
+    </div>
+    {{end}}
+    <div class="mdl-cell mdl-cell--1-col"></div>
+</div>
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--1-col"></div>
+    {{range $i, $v := .NameAry2}}
+    <div class="mdl-cell mdl-cell--2-col">
+        <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-2-{{$i}}">
+            <div class="mdl-card__title mdl-card--expand"></div>
+            <div class="mdl-card__actions">
+                <span class="demo-card-image__filename">{{$v |html}}</span>
+            </div>
+        </div>
+        <br>
+    </div>
+    {{end}}
+    <div class="mdl-cell mdl-cell--1-col"></div>
+</div>
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--1-col"></div>
+    {{range $i, $v := .NameAry3}}
+    <div class="mdl-cell mdl-cell--2-col">
+        <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-3-{{$i}}">
+            <div class="mdl-card__title mdl-card--expand"></div>
+            <div class="mdl-card__actions">
+                <span class="demo-card-image__filename">{{$v |html}}</span>
+            </div>
+        </div>
+        <br>
+    </div>
+    {{end}}
+    <div class="mdl-cell mdl-cell--1-col"></div>
+</div>
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--1-col"></div>
+    {{range $i, $v := .NameAry4}}
+    <div class="mdl-cell mdl-cell--2-col">
+        <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-4-{{$i}}">
+            <div class="mdl-card__title mdl-card--expand"></div>
+            <div class="mdl-card__actions">
+                <span class="demo-card-image__filename">{{$v |html}}</span>
+            </div>
+        </div>
+        <br>
+    </div>
+    {{end}}
+    <div class="mdl-cell mdl-cell--1-col"></div>
+</div>
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--1-col"></div>
+    {{range $i, $v := .NameAry5}}
+    <div class="mdl-cell mdl-cell--2-col">
+        <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-5-{{$i}}">
+            <div class="mdl-card__title mdl-card--expand"></div>
+            <div class="mdl-card__actions">
+                <span class="demo-card-image__filename">{{$v |html}}</span>
+            </div>
+        </div>
+        <br>
+    </div>
+    {{end}}
+    <div class="mdl-cell mdl-cell--1-col"></div>
+</div>
 {{end}}

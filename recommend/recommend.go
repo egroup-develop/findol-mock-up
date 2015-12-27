@@ -9,6 +9,7 @@ import (
 	"encoding/json"
 	"html/template"
 	"io"
+	"strconv"
 )
 
 //logirl_details_id_1to328.jsonパース用構造体
@@ -52,12 +53,14 @@ func render(v string, w io.Writer, data map[string]interface{}){
  * 文字列r.URL.PathはリクエストされたURLのパス部分.
  */
 func handler(w http.ResponseWriter, r *http.Request) {
+	c := appengine.NewContext(r)
+
 	var detailDatasets []DetailDataset
 	var featureDatasets []FeatureDataset
 
 	/***** JSONパースここから *****/
 	//[]byte型での読み込み
-	file, err := ioutil.ReadFile("./json/logirl_details_id_1to332.json") //ロガールid1~332についての詳細
+	file, err := ioutil.ReadFile("./json/logirl_details_id_1to328.json") //ロガールid1~328についての詳細
     json_err := json.Unmarshal(file, &detailDatasets)
 	if err != nil {
 		log.Fatal(err)
@@ -82,6 +85,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 //	fmt.Fprintln(w, featureDatasets[0].Index)
 //	fmt.Fprintln(w, featureDatasets[len(featureDatasets) - 1].NearlyIndex[0])
 
+	/***** 結果ランキングの表示用ここから *****/
 	articleDetailUrl := detailDatasets[0].ArticleDetailUrl
 	imageUrl := detailDatasets[0].ImageUrl[0]
 	name := detailDatasets[0].Name
@@ -89,11 +93,136 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	articleDetailUrlAry := make([]string, 0)
 	imageUrlAry := make([]string, 0)
 	nameAry := make([]string, 0)
-	for i := 4; i < 9; i++{
+	indexAry := make([]string, 0)
+	for i := len(detailDatasets) - 5; i < len(detailDatasets); i++{
 		articleDetailUrlAry = append(articleDetailUrlAry, detailDatasets[i].ArticleDetailUrl)
 		imageUrlAry = append(imageUrlAry, detailDatasets[i].ImageUrl[0])
 		nameAry = append(nameAry, detailDatasets[i].Name)
+		indexAry = append(indexAry, detailDatasets[i].Index)
 	}
+	/***** 結果ランキングの表示用ここまで *****/
+
+	/***** オススメ一覧用ここから*****/
+	recommendRank1 := make([]string, 0)
+	recommendRank2 := make([]string, 0)
+	recommendRank3 := make([]string, 0)
+	recommendRank4 := make([]string, 0)
+	recommendRank5 := make([]string, 0)
+	index := 0
+
+	for i := 0; i < 5; i++{
+		for j := 0; j < 5; j++ {
+			switch i {
+			case 0:
+				index, _ = strconv.Atoi(indexAry[i])
+				recommendRank1 = append(recommendRank1, featureDatasets[index].NearlyIndex[j])
+			case 1:
+				index, _ = strconv.Atoi(indexAry[i])
+				recommendRank2 = append(recommendRank2, featureDatasets[index].NearlyIndex[j])
+			case 2:
+				index, _ = strconv.Atoi(indexAry[i])
+				recommendRank3 = append(recommendRank3, featureDatasets[index].NearlyIndex[j])
+			case 3:
+				index, _ = strconv.Atoi(indexAry[i])
+				recommendRank4 = append(recommendRank4, featureDatasets[index].NearlyIndex[j])
+			case 4:
+				index, _ = strconv.Atoi(indexAry[i])
+				recommendRank5 = append(recommendRank5, featureDatasets[index].NearlyIndex[j])
+			default:
+			}
+		}
+	}
+
+	articleDetailUrlAry1 := make([]string, 0)
+	imageUrlAry1 := make([]string, 0)
+	nameAry1 := make([]string, 0)
+	indexAry1 := make([]string, 0)
+	for i := 0; i < 5; i++{
+		index, _ = strconv.Atoi(recommendRank1[i])
+		index = len(detailDatasets) - index - 1
+		articleDetailUrlAry1 = append(articleDetailUrlAry1, detailDatasets[index].ArticleDetailUrl)
+		imageUrlAry1 = append(imageUrlAry1, detailDatasets[index].ImageUrl[0])
+		nameAry1 = append(nameAry1, detailDatasets[index].Name)
+		indexAry1 = append(indexAry1, detailDatasets[index].Index)
+
+		//コンソールに出力するログ
+		c.Infof(strconv.Itoa(len(detailDatasets) - index) + "\n")
+		c.Infof(articleDetailUrlAry1[i] + "\n")
+	}
+	c.Infof("\n")
+
+	articleDetailUrlAry2 := make([]string, 0)
+	imageUrlAry2 := make([]string, 0)
+	nameAry2 := make([]string, 0)
+	indexAry2 := make([]string, 0)
+	for i := 0; i < 5; i++{
+		index, _ = strconv.Atoi(recommendRank2[i])
+		index = len(detailDatasets) - index - 1
+		articleDetailUrlAry2 = append(articleDetailUrlAry2, detailDatasets[index].ArticleDetailUrl)
+		imageUrlAry2 = append(imageUrlAry2, detailDatasets[index].ImageUrl[0])
+		nameAry2 = append(nameAry2, detailDatasets[index].Name)
+		indexAry2 = append(indexAry2, detailDatasets[index].Index)
+
+		//コンソールに出力するログ
+		c.Infof(strconv.Itoa(len(detailDatasets) - index) + "\n")
+		c.Infof(articleDetailUrlAry2[i] + "\n")
+	}
+	c.Infof("\n")
+
+	articleDetailUrlAry3 := make([]string, 0)
+	imageUrlAry3 := make([]string, 0)
+	nameAry3 := make([]string, 0)
+	indexAry3 := make([]string, 0)
+	for i := 0; i < 5; i++{
+		index, _ = strconv.Atoi(recommendRank3[i])
+		index = len(detailDatasets) - index - 1
+		articleDetailUrlAry3 = append(articleDetailUrlAry3, detailDatasets[index].ArticleDetailUrl)
+		imageUrlAry3 = append(imageUrlAry3, detailDatasets[index].ImageUrl[0])
+		nameAry3 = append(nameAry3, detailDatasets[index].Name)
+		indexAry3 = append(indexAry3, detailDatasets[index].Index)
+
+		//コンソールに出力するログ
+		c.Infof(strconv.Itoa(len(detailDatasets) - index) + "\n")
+		c.Infof(articleDetailUrlAry3[i] + "\n")
+	}
+	c.Infof("\n")
+
+	articleDetailUrlAry4 := make([]string, 0)
+	imageUrlAry4 := make([]string, 0)
+	nameAry4 := make([]string, 0)
+	indexAry4 := make([]string, 0)
+	for i := 0; i < 5; i++{
+		index, _ = strconv.Atoi(recommendRank4[i])
+		index = len(detailDatasets) - index - 1
+		articleDetailUrlAry4 = append(articleDetailUrlAry4, detailDatasets[index].ArticleDetailUrl)
+		imageUrlAry4 = append(imageUrlAry4, detailDatasets[index].ImageUrl[0])
+		nameAry4 = append(nameAry4, detailDatasets[index].Name)
+		indexAry4 = append(indexAry4, detailDatasets[index].Index)
+
+		//コンソールに出力するログ
+		c.Infof(strconv.Itoa(len(detailDatasets) - index) + "\n")
+		c.Infof(articleDetailUrlAry4[i] + "\n")
+	}
+	c.Infof("\n")
+
+	articleDetailUrlAry5 := make([]string, 0)
+	imageUrlAry5 := make([]string, 0)
+	nameAry5 := make([]string, 0)
+	indexAry5 := make([]string, 0)
+	for i := 0; i < 5; i++{
+		index, _ = strconv.Atoi(recommendRank5[i])
+		index = len(detailDatasets) - index - 1
+		articleDetailUrlAry5 = append(articleDetailUrlAry5, detailDatasets[index].ArticleDetailUrl)
+		imageUrlAry5 = append(imageUrlAry5, detailDatasets[index].ImageUrl[0])
+		nameAry5 = append(nameAry5, detailDatasets[index].Name)
+		indexAry5 = append(indexAry5, detailDatasets[index].Index)
+
+		//コンソールに出力するログ
+		c.Infof(strconv.Itoa(len(detailDatasets) - index) + "\n")
+		c.Infof(articleDetailUrlAry5[i] + "\n")
+	}
+	c.Infof("\n")
+	/***** オススメ一覧用ここまで *****/
 
 	/***** テンプレーティングここから *****/
 	data := map[string]interface{}{
@@ -105,12 +234,32 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		"ArticleDetailUrlAry": articleDetailUrlAry,
 		"ImageUrlAry": imageUrlAry,
 		"NameAry": nameAry,
+		"IndexAry": indexAry,
+		"ArticleDetailUrlAry1": articleDetailUrlAry1,
+		"ImageUrlAry1": imageUrlAry1,
+		"NameAry1": nameAry1,
+		"IndexAry1": indexAry1,
+		"ArticleDetailUrlAry2": articleDetailUrlAry2,
+		"ImageUrlAry2": imageUrlAry2,
+		"NameAry2": nameAry2,
+		"IndexAry2": indexAry2,
+		"ArticleDetailUrlAry3": articleDetailUrlAry3,
+		"ImageUrlAry3": imageUrlAry3,
+		"NameAry3": nameAry3,
+		"IndexAry3": indexAry3,
+		"ArticleDetailUrlAry4": articleDetailUrlAry4,
+		"ImageUrlAry4": imageUrlAry4,
+		"NameAry4": nameAry4,
+		"IndexAry4": indexAry4,
+		"ArticleDetailUrlAry5": articleDetailUrlAry5,
+		"ImageUrlAry5": imageUrlAry5,
+		"NameAry5": nameAry5,
+		"IndexAry5": indexAry5,
 	}
 	render("./recommend/template/view.html", w, data)
 	/***** テンプレーティングここまで *****/
 
 	//コンソールに出力するログ
-	c := appengine.NewContext(r)
 	c.Infof("Requested URL: %v", r.URL)
 	//スライスしてパスの先頭スラッシュを除去
 	c.Infof("Requested URL: %v", r.URL.Path[1:])
