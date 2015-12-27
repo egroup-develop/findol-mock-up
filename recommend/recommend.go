@@ -57,14 +57,14 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 	/***** JSONパースここから *****/
 	//[]byte型での読み込み
-	file, err := ioutil.ReadFile("./json/logirl_details_id_1to328.json")
+	file, err := ioutil.ReadFile("./json/logirl_details_id_1to332.json") //ロガールid1~332についての詳細
     json_err := json.Unmarshal(file, &detailDatasets)
 	if err != nil {
 		log.Fatal(err)
 		log.Fatal(json_err)
 	}
 
-	file, err = ioutil.ReadFile("./json/logirl_features_id_1to328.json")
+	file, err = ioutil.ReadFile("./json/logirl_features_id_1to328.json") //ロガールid1~328についての特徴類似リスト
 	json_err = json.Unmarshal(file, &featureDatasets)
 	if err != nil {
 		log.Fatal(err)
@@ -81,16 +81,19 @@ func handler(w http.ResponseWriter, r *http.Request) {
 //	fmt.Fprintln(w, len(featureDatasets))
 //	fmt.Fprintln(w, featureDatasets[0].Index)
 //	fmt.Fprintln(w, featureDatasets[len(featureDatasets) - 1].NearlyIndex[0])
+
 	articleDetailUrl := detailDatasets[0].ArticleDetailUrl
 	imageUrl := detailDatasets[0].ImageUrl[0]
 	name := detailDatasets[0].Name
 
-	//コンソールに出力するログ
-	c := appengine.NewContext(r)
-	c.Infof("Requested URL: %v", r.URL)
-	//スライスしてパスの先頭スラッシュを除去
-	c.Infof("Requested URL: %v", r.URL.Path[1:])
-	c.Infof("ほげえええええええええええええ" + "\n")
+	articleDetailUrlAry := make([]string, 0)
+	imageUrlAry := make([]string, 0)
+	nameAry := make([]string, 0)
+	for i := 4; i < 9; i++{
+		articleDetailUrlAry = append(articleDetailUrlAry, detailDatasets[i].ArticleDetailUrl)
+		imageUrlAry = append(imageUrlAry, detailDatasets[i].ImageUrl[0])
+		nameAry = append(nameAry, detailDatasets[i].Name)
+	}
 
 	/***** テンプレーティングここから *****/
 	data := map[string]interface{}{
@@ -99,8 +102,18 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		"ArticleDetailUrl": articleDetailUrl,
 		"ImageUrl": imageUrl,
 		"Name": name,
+		"ArticleDetailUrlAry": articleDetailUrlAry,
+		"ImageUrlAry": imageUrlAry,
+		"NameAry": nameAry,
 	}
 	render("./recommend/template/view.html", w, data)
 	/***** テンプレーティングここまで *****/
+
+	//コンソールに出力するログ
+	c := appengine.NewContext(r)
+	c.Infof("Requested URL: %v", r.URL)
+	//スライスしてパスの先頭スラッシュを除去
+	c.Infof("Requested URL: %v", r.URL.Path[1:])
+	c.Infof("ほげえええええええええええええ" + "\n")
 }
 
