@@ -16,6 +16,26 @@
 {{range .IndexAry}}
 {{.}}
 {{end}}
+<br>
+{{range $index, $value := .Person1}}
+{{$index}} {{$value.ArticleDetailUrl}} {{$value.Index}} {{$value.ImageUrl}} {{$value.Name}}<br>
+{{end}}
+<br>
+{{range $index, $value := .Person2}}
+{{$index}} {{$value.ArticleDetailUrl}} {{$value.Index}} {{$value.ImageUrl}} {{$value.Name}}<br>
+{{end}}
+<br>
+{{range $index, $value := .Person3}}
+{{$index}} {{$value.ArticleDetailUrl}} {{$value.Index}} {{$value.ImageUrl}} {{$value.Name}}<br>
+{{end}}
+<br>
+{{range $index, $value := .Person4}}
+{{$index}} {{$value.ArticleDetailUrl}} {{$value.Index}} {{$value.ImageUrl}} {{$value.Name}}<br>
+{{end}}
+<br>
+{{range $index, $value := .Person5}}
+{{$index}} {{$value.ArticleDetailUrl}} {{$value.Index}} {{$value.ImageUrl}} {{$value.Name}}<br>
+{{end}}
 {{end}}
 
 
@@ -165,14 +185,16 @@
 {{end}}
 <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--1-col"></div>
-    {{range $i, $v := .NameAry1}}
+    {{range $index, $value := .Person1}}
     <div class="mdl-cell mdl-cell--2-col">
-        <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-1-{{$i}}">
-            <div class="mdl-card__title mdl-card--expand"></div>
-            <div class="mdl-card__actions">
-                <span class="demo-card-image__filename">{{$v |html}}</span>
+        <a href={{$value.ArticleDetailUrl |html}} target="_blank">
+            <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-1-{{$index}}">
+                <div class="mdl-card__title mdl-card--expand"></div>
+                <div class="mdl-card__actions">
+                    <span class="demo-card-image__filename">{{$value.Name |html}}</span>
+                </div>
             </div>
-        </div>
+        </a>
         <br>
     </div>
     {{end}}
@@ -181,14 +203,16 @@
 
 <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--1-col"></div>
-    {{range $i, $v := .NameAry2}}
+    {{range $index, $value := .Person2}}
     <div class="mdl-cell mdl-cell--2-col">
-        <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-2-{{$i}}">
-            <div class="mdl-card__title mdl-card--expand"></div>
-            <div class="mdl-card__actions">
-                <span class="demo-card-image__filename">{{$v |html}}</span>
+        <a href={{$value.ArticleDetailUrl |html}} target="_blank">
+            <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-2-{{$index}}">
+                <div class="mdl-card__title mdl-card--expand"></div>
+                <div class="mdl-card__actions">
+                    <span class="demo-card-image__filename">{{$value.Name |html}}</span>
+                </div>
             </div>
-        </div>
+        </a>
         <br>
     </div>
     {{end}}
@@ -197,14 +221,16 @@
 
 <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--1-col"></div>
-    {{range $i, $v := .NameAry3}}
+    {{range $index, $value := .Person3}}
     <div class="mdl-cell mdl-cell--2-col">
-        <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-3-{{$i}}">
-            <div class="mdl-card__title mdl-card--expand"></div>
-            <div class="mdl-card__actions">
-                <span class="demo-card-image__filename">{{$v |html}}</span>
+        <a href={{$value.ArticleDetailUrl |html}} target="_blank">
+            <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-3-{{$index}}">
+                <div class="mdl-card__title mdl-card--expand"></div>
+                <div class="mdl-card__actions">
+                    <span class="demo-card-image__filename">{{$value.Name |html}}</span>
+                </div>
             </div>
-        </div>
+        </a>
         <br>
     </div>
     {{end}}
@@ -213,14 +239,16 @@
 
 <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--1-col"></div>
-    {{range $i, $v := .NameAry4}}
+    {{range $index, $value := .Person4}}
     <div class="mdl-cell mdl-cell--2-col">
-        <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-4-{{$i}}">
-            <div class="mdl-card__title mdl-card--expand"></div>
-            <div class="mdl-card__actions">
-                <span class="demo-card-image__filename">{{$v |html}}</span>
+        <a href={{$value.ArticleDetailUrl |html}} target="_blank">
+            <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-4-{{$index}}">
+                <div class="mdl-card__title mdl-card--expand"></div>
+                <div class="mdl-card__actions">
+                    <span class="demo-card-image__filename">{{$value.Name |html}}</span>
+                </div>
             </div>
-        </div>
+        </a>
         <br>
     </div>
     {{end}}
@@ -229,14 +257,16 @@
 
 <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--1-col"></div>
-    {{range $i, $v := .NameAry5}}
+    {{range $index, $value := .Person5}}
     <div class="mdl-cell mdl-cell--2-col">
-        <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-5-{{$i}}">
-            <div class="mdl-card__title mdl-card--expand"></div>
-            <div class="mdl-card__actions">
-                <span class="demo-card-image__filename">{{$v |html}}</span>
+        <a href={{$value.ArticleDetailUrl |html}} target="_blank">
+            <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-5-{{$index}}">
+                <div class="mdl-card__title mdl-card--expand"></div>
+                <div class="mdl-card__actions">
+                    <span class="demo-card-image__filename">{{$value.Name |html}}</span>
+                </div>
             </div>
-        </div>
+        </a>
         <br>
     </div>
     {{end}}

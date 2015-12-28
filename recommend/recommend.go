@@ -225,6 +225,61 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	/***** オススメ一覧用ここまで *****/
 
 	/***** テンプレーティングここから *****/
+	type Person1 struct {
+		ArticleDetailUrl string
+		Index string
+		ImageUrl string
+		Name string
+	}
+	person1 := make([]Person1, 0)
+	for i := 0; i < len(recommendRank1); i++{
+		person1 = append(person1, Person1{articleDetailUrlAry1[i], indexAry1[i], imageUrlAry1[i], nameAry1[i]})
+	}
+
+	type Person2 struct {
+		ArticleDetailUrl string
+		Index string
+		ImageUrl string
+		Name string
+	}
+	person2 := make([]Person2, 0)
+	for i := 0; i < len(recommendRank2); i++{
+		person2 = append(person2, Person2{articleDetailUrlAry2[i], indexAry2[i], imageUrlAry2[i], nameAry2[i]})
+	}
+
+	type Person3 struct {
+		ArticleDetailUrl string
+		Index string
+		ImageUrl string
+		Name string
+	}
+	person3 := make([]Person3, 0)
+	for i := 0; i < len(recommendRank3); i++{
+		person3 = append(person3, Person3{articleDetailUrlAry3[i], indexAry3[i], imageUrlAry3[i], nameAry3[i]})
+	}
+
+	type Person4 struct {
+		ArticleDetailUrl string
+		Index string
+		ImageUrl string
+		Name string
+	}
+	person4 := make([]Person4, 0)
+	for i := 0; i < len(recommendRank4); i++{
+		person4 = append(person4, Person4{articleDetailUrlAry4[i], indexAry4[i], imageUrlAry4[i], nameAry4[i]})
+	}
+
+	type Person5 struct {
+		ArticleDetailUrl string
+		Index string
+		ImageUrl string
+		Name string
+	}
+	person5 := make([]Person5, 0)
+	for i := 0; i < len(recommendRank5); i++{
+		person5 = append(person5, Person5{articleDetailUrlAry5[i], indexAry5[i], imageUrlAry5[i], nameAry5[i]})
+	}
+
 	data := map[string]interface{}{
 		"Title": "ほげほげ",
 		"Body": "ふが<b>もが</b>ふが",
@@ -255,6 +310,11 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		"ImageUrlAry5": imageUrlAry5,
 		"NameAry5": nameAry5,
 		"IndexAry5": indexAry5,
+		"Person1": person1,
+		"Person2": person2,
+		"Person3": person3,
+		"Person4": person4,
+		"Person5": person5,
 	}
 	render("./recommend/template/view.html", w, data)
 	/***** テンプレーティングここまで *****/
