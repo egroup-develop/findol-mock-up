@@ -74,10 +74,10 @@
 </style>
 {{end}}
 {{range $i, $v := .NameAry}}
-<form method="POST" action="write">
+<form method="POST" action="recommend/photolist">
 <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-{{$i}}">
     <!--<div class="mdl-card__title mdl-card&#45;&#45;expand"></div>-->
-    <input type="submit" value={{$i}} class="image-jump-to-article" name="name">
+    <input type="submit" value={{$i}} class="image-jump-to-article" name="index">
     <div class="mdl-card__actions">
         <span class="demo-card-image__filename">{{$v |html}}</span>
     </div>

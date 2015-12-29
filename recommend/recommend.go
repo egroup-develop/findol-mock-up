@@ -4,7 +4,7 @@ import (
 	"appengine"
 	"net/http"
 	"io/ioutil"
-//	"fmt"
+	"fmt"
 	"log"
 	"encoding/json"
 	"html/template"
@@ -19,18 +19,29 @@ type DetailDataset struct {
 	ArticleDetailUrl string
 	ImageUrl []string
 }
+
 //logirl_features_id_1to328.jsonパース用構造体
 type FeatureDataset struct{
 	Index string
 	NearlyIndex []string
 }
 
+//グローバルPerson定義用
+type Person struct {
+	ArticleDetailUrl string
+	Index string
+	ImageUrl []string
+	Name string
+}
+var person = make([]Person, 0)
+
 func init() {
 	//ここで指定する階層が基点となる. 以降のファイル指定はfindol-mock-up/から見て指定する.
 	http.HandleFunc("/recommend", handler)
+	http.HandleFunc("/recommend/photolist", handlerList)
 }
 
-//テンプレーティングのためのレンダラ
+//テンプレーティングのためのレンダラ for result & recommend
 func render(v string, w io.Writer, data map[string]interface{}){
 	//独自メソッドをテンプレート側に登録し, テンプレート中でhtmlのエスケープに使っている(|html)
 	funcMap := template.FuncMap{
@@ -43,6 +54,21 @@ func render(v string, w io.Writer, data map[string]interface{}){
 	err := templates.ExecuteTemplate(w, "base", data)
 	if err != nil {
 //		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
+//テンプレーティングのためのレンダラ for Photo
+func renderForPhoto(v string, w io.Writer, data map[string]interface{}){
+	//独自メソッドをテンプレート側に登録し, テンプレート中でhtmlのエスケープに使っている(|html)
+	funcMap := template.FuncMap{
+		"html": func(text string) template.HTML { return template.HTML(text) },
+	}
+	//ネスト対象の子テンプレートの読み込み. テンプレーティングされたいファイル, 埋め込みたいファイル
+	templates := template.Must(template.New("").Funcs(funcMap).ParseFiles("./recommend/template/base_photo.html", v))
+
+	err := templates.ExecuteTemplate(w, "base", data)
+	if err != nil {
+		//		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }
 
@@ -94,11 +120,14 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	imageUrlAry := make([]string, 0)
 	nameAry := make([]string, 0)
 	indexAry := make([]string, 0)
-	for i := len(detailDatasets) - 5; i < len(detailDatasets); i++{
+	for i := len(detailDatasets) - 5; i < len(detailDatasets); i++ {
 		articleDetailUrlAry = append(articleDetailUrlAry, detailDatasets[i].ArticleDetailUrl)
 		imageUrlAry = append(imageUrlAry, detailDatasets[i].ImageUrl[0])
 		nameAry = append(nameAry, detailDatasets[i].Name)
 		indexAry = append(indexAry, detailDatasets[i].Index)
+		imageUrlAryForPhoto := detailDatasets[i].ImageUrl
+
+		person = append(person, Person{articleDetailUrlAry[len(articleDetailUrlAry) - 1], indexAry[len(indexAry) - 1], imageUrlAryForPhoto, nameAry[len(nameAry) - 1]})
 	}
 	/***** 結果ランキングの表示用ここまで *****/
 
@@ -324,5 +353,40 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	//スライスしてパスの先頭スラッシュを除去
 	c.Infof("Requested URL: %v", r.URL.Path[1:])
 	c.Infof("ほげえええええええええええええ" + "\n")
+
+	if r.Method == "POST"{
+		c.Infof(r.FormValue("index"))
+
+		/***** テンプレーティングここから *****/
+		index, _ := strconv.Atoi(r.FormValue("index"))
+
+		data = map[string]interface{}{
+			"Person": person[index],
+		}
+		renderForPhoto("./recommend/template/view_photo.html", w, data)
+		/***** テンプレーティングここまで *****/
+	}
 }
 
+func handlerList(w http.ResponseWriter, r *http.Request) {
+	c := appengine.NewContext(r)
+
+	if r.Method != "POST" {
+		w.WriteHeader(http.StatusNotFound)
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+		fmt.Fprintf(w, "Not Found")
+		return
+	}else {
+		//POSTされた番号表示
+		c.Infof(r.FormValue("index"))
+
+		/***** テンプレーティングここから *****/
+		index, _ := strconv.Atoi(r.FormValue("index"))
+
+		data := map[string]interface{}{
+			"Person": person[index],
+		}
+		renderForPhoto("./recommend/template/view_photo.html", w, data)
+		/***** テンプレーティングここまで *****/
+	}
+}
