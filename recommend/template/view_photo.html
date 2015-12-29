@@ -6,7 +6,6 @@
     width: 256px;
     height: 256px;
     }
-
     .back-image-{{$i}}{
     background: url({{$v |html}}) center / cover;
     }
@@ -20,22 +19,15 @@
     font-size: 14px;
     font-weight: 500;
     }
-    .image-jump-to-article {
-    opacity: 0.0;
-    color: Transparent;
-    width: 256;
-    height: 256;
-    }
 </style>
-<form method="POST" action="">
+<a href={{$v |html}} data-lity>
     <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-{{$i}}">
         <div class="mdl-card__title mdl-card--expand"></div>
-        <!--<input type="submit" value={{$i}} class="image-jump-to-article" name="index">-->
-        <div class="mdl-card__actions">
-            <span class="demo-card-image__filename">ほげ</span>
-        </div>
+        <!--<div class="mdl-card__actions">-->
+            <!--<span class="demo-card-image__filename">{{$i}}</span>-->
+        <!--</div>-->
     </div>
-</form>
+</a>
 <br>
 {{end}}
 {{end}}
