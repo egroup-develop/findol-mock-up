@@ -6,6 +6,9 @@
 {{define "contentBody"}}
 <h1>{{.Title |html}}</h1>
 <article>{{.Body |html}}</article>
+<form method="POST" action="write">
+    <input type="image" src={{.ImageUrl |html}} width="300px" name="name" value="ヴェアアアアア">
+</form>
 <img src={{.ImageUrl |html}} width="300px">
 {{range $i, $v := .NameAry}}
 <p>ああああああああ {{$v}}</p>
@@ -62,15 +65,24 @@
     font-size: 14px;
     font-weight: 500;
     }
+    .image-jump-to-article {
+    opacity: 0.0;
+    color: Transparent;
+    width: 256;
+    height: 256;
+    }
 </style>
 {{end}}
 {{range $i, $v := .NameAry}}
+<form method="POST" action="write">
 <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-{{$i}}">
-    <div class="mdl-card__title mdl-card--expand"></div>
+    <!--<div class="mdl-card__title mdl-card&#45;&#45;expand"></div>-->
+    <input type="submit" value={{$i}} class="image-jump-to-article" name="name">
     <div class="mdl-card__actions">
         <span class="demo-card-image__filename">{{$v |html}}</span>
     </div>
 </div>
+</form>
 <br>
 {{end}}
 {{end}}
