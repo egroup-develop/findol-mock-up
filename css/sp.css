@@ -101,44 +101,48 @@ text-decoration: none;
 	margin: 0 auto;
 }
 
-/*rt css*/
+/*rt(dl) css*/
+
 .tabs {
-    width: 350px;
-    float: none;
-    list-style: none;
     position: relative;
-    text-align: left;
+    padding: 0;
+    width:350px;
 }
 
 .tabs li {
-    float: left;
-    display: block;
+    list-style: none;
+    display: inline-block;
 }
 
-.tabs input[type="radio"] {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
+.tabs input[type=radio] {
+    display: none;
 }
 
 .tabs label {
     display: block;
-    border-radius: 2px 2px 0 0;
-    font-size: 25px;
-    font-weight: normal;
-    text-transform: uppercase;
     cursor: pointer;
-    position: relative;
-    top: 4px;
-    -webkit-transition: all 0.2s ease-in-out;
-    -moz-transition: all 0.2s ease-in-out;
-    -o-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
-    width: 175px;
-    height: 53px;
-    text-align: center;
-    padding-top: 15px;
+    padding: 5px;
+    line-height: 20px;
+    background-color: #FFDA80;
     color: #fff;
+    width: 175px;
+    padding-top: 20px;
+    font-size: 25px;
+    height: 25px;
+}
+
+.tabs label:hover {
+    background-color: #ffcd52;
+    color: #fff;
+}
+
+.tabs input[type=radio]:checked + label {
+    background-color: #ffcd52;
+    color: #fff;
+    width: 175px;
+    padding-top: 20px;
+    font-size: 25px;
+    border-bottom: 4px solid #ECB42A;
 }
 
 .tabs .tab-content {
@@ -151,128 +155,157 @@ text-decoration: none;
     position: absolute;
     top: 53px;
     left: 0;
-    margin:0 auto; 
+    box-shadow:rgba(204, 204, 204, 0.6) 0px 5px 5px -1px inset;
 }
 
-.tabs [id^="tab1"]:checked + label {
-    top: 0;
-    padding-top: 20px;
-    background-color: #00d3de;
-    color: #fff;
-}
+#ranking_1{
+	margin: 50px auto 10px auto;
+	width: 300px;
+	height: 150px;
+	font-family:  "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, Meiryo, sans-serif;
+	box-shadow:rgba(220, 222, 224, 0.65098) 2px 2px 3px 1px;
+	background-color: #fff;
 
-.tabs [id^="tab2"]:checked + label {
-    top: 0;
-    padding-top: 20px;
-    background-color: #ffcd52;
-    color: #fff;
-}
-
-.tabs [id^="tab"]:checked ~ [id^="tab-content"] {
- display: block;
-}
-
-#tab1{
-	 background-color: #00d3de;
-	 top: 4px;
-}
-
-#tab2{
-	 background-color: #ffcd52;
-	 top: 4px;
 }
 
 .ranking{
-	margin: 25px auto;
-	width: 335px;
+	margin: 10px 5px 10px 5px;
+	width: 125px;
 	font-family:  "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, Meiryo, sans-serif;
+	float: left;
+	background-color: #fff;
+	box-shadow:rgba(220, 222, 224, 0.65098) 2px 2px 3px 1px;
+
+}
+
+#ranking_other{
+	width:300px;
+	margin: 0 auto;
+}
+
+#rt_img_1{
+	float:left;
+	width:125px;
+	height: 125px;
 }
 
 .rt_img{
 	float:left;
-	width:140px;
+	width:75px;
+}
+
+#idol_name_1{
+	float: left;
+	margin-left: 20px;
+	margin-top: 10px;
 }
 
 .idol_name{
 	float: left;
 	margin-left: 20px;
+	margin-top: 10px;
+}
+
+#name_1{
+	font-size: 35px;
+	padding:20px 0  0 20px;
+	font-weight: bold;
 }
 
 .name{
-	font-size: 25px;
+	font-size: 20px;
+	padding-left: 10px;
 	font-weight: bold;
+}
+
+#unit_1{
+	font-size: 20px;
+	padding-left: 20px;
+	padding-top: 18px;
 }
 
 .unit{
-	font-size: 18px;
+	font-size: 15px;
+	padding-left: 10px;
+	height: 30px;
 }
 
-#rt_button1{
-	width:175px;
-	position: relative;
-	background-color: #ffce42;
-	border-radius: 4px;
-	color: #fff;
-	line-height: 40px;
-	-webkit-transition: none;
-	transition: none;
-	box-shadow: 0 3px 0 #ffbc18;
-	text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
-	font-size: 25px;
-	text-align: center;
-	font-weight: bold;
-	margin-top: 20px;
+#curled-box_1{
+	border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    background-color: #ffce42;
+    box-shadow: rgba(220, 222, 224, 0.65098) 2px 2px 3px 1px;
+    margin: auto 10px 0px 410px;
+    padding: 10px;
 }
 
-#rt_button2{
-	width:175px;
-	position: relative;
-	background-color: #6edaf4;
-	border-radius: 4px;
-	color: #fff;
-	line-height: 40px;
-	-webkit-transition: none;
-	transition: none;
-	box-shadow: 0 3px 0 #4faac0;
-	text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
-	font-size: 25px;
-	text-align: center;
-	font-weight: bold;
-	margin-top: 20px;
+#curled-box_1 :hover{
+	background-color:#F2B812;
 }
 
-#rt_button3{
-	width:175px;
-	position: relative;
-	background-color: #d7b9ff;
-	border-radius: 4px;
-	color: #fff;
-	line-height: 40px;
-	-webkit-transition: none;
-	transition: none;
-	box-shadow: 0 3px 0 #ab93cb;
-	text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
-	font-size: 25px;
-	text-align: center;
-	font-weight: bold;
-	margin-top: 20px;
+.curled-box{
+	border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    background-color: #ffce42;
+    box-shadow: rgba(220, 222, 224, 0.65098) 2px 2px 3px 1px;
+    margin: auto 0px 10px 150px;
+    padding: 10px;
 }
 
-.rt_button45{
-	width:175px;
-	position: relative;
+.curled-box :hover{
+	background-color:#fff;
+}
+
+#footer{
+	position: fixed;
+    bottom: 0;
+    height: 80px;
+    width: 350px;
+    background-color: #efefef;
+    box-shadow:rgba(113, 135, 164, 0.309804) 0px -2px 9px 1px;
+}
+
+#footer_btn{
+	width:300px;
+	margin:0 auto;
+}
+
+#return_dl{
+    width: 150px;
+    height: 65px;
+    position: relative;
+    background-color: #ffce42;
+    border-radius: 4px;
+    color: #fff;
+    -webkit-transition: none;
+    transition: none;
+    box-shadow: rgba(220, 222, 224, 0.65098) 2px 2px 3px 1px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    float: left;
+    margin: 5px 20px;
+}
+
+#return_si{
+    width: 150px;
+    height: 65px;
+    position: relative;
 	background-color: #ff7d7d;
-	border-radius: 4px;
-	color: #fff;
-	line-height: 40px;
-	-webkit-transition: none;
-	transition: none;
-	box-shadow: 0 3px 0 #ff4a4a;
-	text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
-	font-size: 25px;
-	text-align: center;
-	margin-top:20px ;
-	font-weight: bold;
+    border-radius: 4px;
+    color: #fff;
+    -webkit-transition: none;
+    transition: none;
+    box-shadow: rgba(220, 222, 224, 0.65098) 2px 2px 3px 1px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    float: left;
+    margin: 5px 20px;
 }
 
 
