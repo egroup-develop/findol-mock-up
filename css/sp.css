@@ -103,84 +103,60 @@ text-decoration: none;
 
 /*rt css*/
 .tabs {
-    width: 350px;
-    float: none;
-    list-style: none;
     position: relative;
-    text-align: left;
+    padding: 0;
+    width:350px;
 }
 
 .tabs li {
-    float: left;
-    display: block;
+    list-style: none;
+    display: inline-block;
 }
 
-.tabs input[type="radio"] {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
+.tabs input[type=radio] {
+    display: none;
 }
 
 .tabs label {
     display: block;
-    border-radius: 2px 2px 0 0;
-    font-size: 25px;
-    font-weight: normal;
-    text-transform: uppercase;
     cursor: pointer;
-    position: relative;
-    top: 4px;
-    -webkit-transition: all 0.2s ease-in-out;
-    -moz-transition: all 0.2s ease-in-out;
-    -o-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
-    width: 175px;
-    height: 53px;
-    text-align: center;
-    padding-top: 15px;
+    padding: 5px;
+    line-height: 5px;
+    background-color: #FFDA80;
     color: #fff;
+    width: 175px;
+    padding-top: 5px;
+    font-size: 10px;
+    height: 10px;
+}
+
+.tabs label:hover {
+    background-color: #ffcd52;
+    color: #fff;
+}
+
+.tabs input[type=radio]:checked + label {
+    background-color: #ffcd52;
+    color: #fff;
+    width: 175px;
+    padding-top:50px;
+    font-size: 10px;
+    border-bottom: 4px solid #ECB42A;
 }
 
 .tabs .tab-content {
     z-index: 2;
     display: none;
     overflow: hidden;
-    width: 350px;
-    font-size: 17px;
+    width: 375px;
+    font-size: 10px;
     line-height: 1.8em;
     position: absolute;
-    top: 53px;
+    top: 5px;
     left: 0;
-    margin:0 auto; 
+    box-shadow:rgba(204, 204, 204, 0.6) 0px 5px 5px -1px inset;
 }
 
-.tabs [id^="tab1"]:checked + label {
-    top: 0;
-    padding-top: 20px;
-    background-color: #00d3de;
-    color: #fff;
-}
-
-.tabs [id^="tab2"]:checked + label {
-    top: 0;
-    padding-top: 20px;
-    background-color: #ffcd52;
-    color: #fff;
-}
-
-.tabs [id^="tab"]:checked ~ [id^="tab-content"] {
- display: block;
-}
-
-#tab1{
-	 background-color: #00d3de;
-	 top: 4px;
-}
-
-#tab2{
-	 background-color: #ffcd52;
-	 top: 4px;
-}
 
 .ranking{
 	margin: 25px auto;
