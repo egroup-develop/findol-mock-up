@@ -291,3 +291,50 @@ text-decoration: none;
 	padding-top: 5px;
 	text-align: center;
 }
+
+/*pl css*/
+
+#title{
+	background-color: #ff7d7d;
+	width:300px;
+	height:75px;
+}
+
+#title p{
+	font-size: 35px;
+	padding-left: 30px;
+	padding-top: 10px;
+	font-weight: bold;
+	color:#fff;
+}
+
+#img_box{
+	width:300px;
+	margin:5px auto;
+}
+
+.image{
+	width:30%;
+	float: left;
+	margin:1%;
+	box-shadow:rgba(220, 222, 224, 0.65098) 2px 2px 3px 1px;
+}
+
+.ad_link {
+    width: 100px;
+    height: 40px;
+	background-color: #ff7d7d;
+    border-radius: 1px;
+    color: #fff;
+	box-shadow:rgba(204, 204, 204, 0.6) 5px 5px 5px -1px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+    text-align: center;
+    font-weight: bold;
+    margin: 5px auto;
+}
+
+.ad_link p{
+	font-size:20px;
+	height: 20px;
+	padding-top: 5px;
+}
