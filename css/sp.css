@@ -321,12 +321,12 @@ text-decoration: none;
 }
 
 .ad_link {
-    width: 100px;
+    width: 200px;
     height: 40px;
-	background-color: #ff7d7d;
+    background-color: #ff7d7d;
     border-radius: 1px;
     color: #fff;
-	box-shadow:rgba(204, 204, 204, 0.6) 5px 5px 5px -1px;
+    box-shadow: rgba(204, 204, 204, 0.6) 5px 5px 5px -1px;
     text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
     text-align: center;
     font-weight: bold;
@@ -380,7 +380,7 @@ display: block\9;
     top: 105px;
     left: 50px; 
     z-index: 20;
-    width: 200px;
+    width: 270px;
     overflow-x: hidden;
     border-radius: 2px;
     background-color: rgba(255,255,255,0.80);
