@@ -10,8 +10,8 @@ handlers:
 - url: /css
   static_dir: css
 
-- url: /recommend/template
-  static_dir: recommend/template
+#- url: /recommend/template
+#  static_dir: recommend/template
 
 - url: /.*
   script: _go_app
