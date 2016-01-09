@@ -86,7 +86,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 	/***** JSONパースここから *****/
 	//[]byte型での読み込み
-	file, err := ioutil.ReadFile("./json/logirl_details_id_1to328.json") //ロガールid1~328についての詳細
+	file, err := ioutil.ReadFile("./json/logirl_details_id_1to328_array.json") //ロガールid1~328についての詳細
     json_err := json.Unmarshal(file, &detailDatasets)
 	if err != nil {
 		log.Fatal(err)
@@ -112,6 +112,21 @@ func handler(w http.ResponseWriter, r *http.Request) {
 //	fmt.Fprintln(w, featureDatasets[len(featureDatasets) - 1].NearlyIndex[0])
 
 	/***** 結果ランキングの表示用ここから *****/
+	/**
+	 * 本番では, アイドルのIndexを格納した配列（ソート済み）をtestRankAryの代わりに用いる
+	 */
+	testRankAry := make([]string, 0)
+	for i:= 0; i < 5; i++ {
+		testRankAry = append(testRankAry, strconv.Itoa(4 - i))
+	}
+	accessDataset := make(map[string]map[string][]string)
+	for i := 0; i < len(detailDatasets); i++ {
+		accessDataset[detailDatasets[i].Index] = make(map[string][]string)
+		accessDataset[detailDatasets[i].Index]["ArticleDetailUrl"] = []string{detailDatasets[i].ArticleDetailUrl}
+		accessDataset[detailDatasets[i].Index]["ImageUrl"] = detailDatasets[i].ImageUrl
+		accessDataset[detailDatasets[i].Index]["Name"] = []string{detailDatasets[i].Name}
+	}
+
 	articleDetailUrl := detailDatasets[0].ArticleDetailUrl
 	imageUrl := detailDatasets[0].ImageUrl[0]
 	name := detailDatasets[0].Name
@@ -120,12 +135,12 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	imageUrlAry := make([]string, 0)
 	nameAry := make([]string, 0)
 	indexAry := make([]string, 0)
-	for i := len(detailDatasets) - 5; i < len(detailDatasets); i++ {
-		articleDetailUrlAry = append(articleDetailUrlAry, detailDatasets[i].ArticleDetailUrl)
-		imageUrlAry = append(imageUrlAry, detailDatasets[i].ImageUrl[0])
-		nameAry = append(nameAry, detailDatasets[i].Name)
-		indexAry = append(indexAry, detailDatasets[i].Index)
-		imageUrlAryForPhoto := detailDatasets[i].ImageUrl
+	for i := 0; i < len(testRankAry); i++ {
+		articleDetailUrlAry = append(articleDetailUrlAry, accessDataset[testRankAry[i]]["ArticleDetailUrl"][0])
+		imageUrlAry = append(imageUrlAry, accessDataset[testRankAry[i]]["ImageUrl"][0])
+		nameAry = append(nameAry, accessDataset[testRankAry[i]]["Name"][0])
+		indexAry = append(indexAry, testRankAry[i])
+		imageUrlAryForPhoto := accessDataset[testRankAry[i]]["ImageUrl"]
 
 		person = append(person, Person{articleDetailUrlAry[len(articleDetailUrlAry) - 1], indexAry[len(indexAry) - 1], imageUrlAryForPhoto, nameAry[len(nameAry) - 1]})
 	}
