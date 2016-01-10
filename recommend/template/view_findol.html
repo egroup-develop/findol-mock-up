@@ -1,0 +1,10 @@
+<!--画像一覧表示-->
+{{define "findolContentBody"}}
+{{range .Rank}}
+<p>{{.}}</p>
+{{end}}
+<form method="POST" action="findol">
+    <button type="sunbmit" name="index" value="1">ボタン</button>
+</form>
+{{end}}
+
