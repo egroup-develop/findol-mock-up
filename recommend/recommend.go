@@ -39,6 +39,7 @@ func init() {
 	//ここで指定する階層が基点となる. 以降のファイル指定はfindol-mock-up/から見て指定する.
 	http.HandleFunc("/recommend", handler)
 	http.HandleFunc("/recommend/photolist", handlerList)
+	http.HandleFunc("/findol", handlerSort)
 }
 
 //テンプレーティングのためのレンダラ for result & recommend
@@ -65,6 +66,21 @@ func renderForPhoto(v string, w io.Writer, data map[string]interface{}){
 	}
 	//ネスト対象の子テンプレートの読み込み. テンプレーティングされたいファイル, 埋め込みたいファイル
 	templates := template.Must(template.New("").Funcs(funcMap).ParseFiles("./recommend/template/base_photo.html", v))
+
+	err := templates.ExecuteTemplate(w, "base", data)
+	if err != nil {
+		//		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
+//テンプレーティングのためのレンダラ for Findol
+func renderForFindol(v string, w io.Writer, data map[string]interface{}){
+	//独自メソッドをテンプレート側に登録し, テンプレート中でhtmlのエスケープに使っている(|html)
+	funcMap := template.FuncMap{
+		"html": func(text string) template.HTML { return template.HTML(text) },
+	}
+	//ネスト対象の子テンプレートの読み込み. テンプレーティングされたいファイル, 埋め込みたいファイル
+	templates := template.Must(template.New("").Funcs(funcMap).ParseFiles("./recommend/template/base_findol.html", v))
 
 	err := templates.ExecuteTemplate(w, "base", data)
 	if err != nil {
@@ -404,4 +420,79 @@ func handlerList(w http.ResponseWriter, r *http.Request) {
 		renderForPhoto("./recommend/template/view_photo.html", w, data)
 		/***** テンプレーティングここまで *****/
 	}
+}
+
+func handlerSort(w http.ResponseWriter, r *http.Request) {
+	c := appengine.NewContext(r)
+	c.Infof("ソートします?")
+
+
+	rank := []int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1}
+	data := map[string]interface{}{
+		"Rank": rank,
+	}
+	renderForFindol("./recommend/template/view_findol.html", w, data)
+
+	//マージソート
+	answer := mergeSort(rank)
+
+	tmp := make([]int, 0)
+	for i, _ := range answer {
+		tmp = append(tmp, answer[len(answer) - 1 - i])
+	}
+
+
+//	if r.Method != "POST" {
+//		w.WriteHeader(http.StatusNotFound)
+//		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+//		fmt.Fprintf(w, "Not Found")
+//		return
+//	}else {
+//		//POSTされた番号表示
+//		c.Infof(r.FormValue("index"))
+//
+//		/***** テンプレーティングここから *****/
+//		index, _ := strconv.Atoi(r.FormValue("index"))
+//
+//		data := map[string]interface{}{
+//			"Person": person[index],
+//		}
+//		renderForPhoto("./recommend/template/view_photo.html", w, data)
+//		/***** テンプレーティングここまで *****/
+//	}
+}
+
+func merge(a, b []int)[]int{
+	tmp := make([]int, len(a)+len(b))
+	i, j := 0, 0
+
+	for i < len(a) && j < len(b){
+		if a[i] <= b[j]{
+			tmp[i+j] = a[i]
+			i++
+		}else{
+			tmp[i+j] = b[j]
+			j++
+		}
+	}
+
+	for i < len(a){
+		tmp[i+j] = a[i]
+		i++
+	}
+
+	for j < len(b){
+		tmp[i+j] = b[j]
+		j++
+	}
+
+	return tmp
+}
+
+func mergeSort(items []int)[]int{
+	if len(items) > 1{
+		return merge(mergeSort(items[:len(items)/2]), mergeSort(items[len(items)/2:]))
+	}
+
+	return items
 }
