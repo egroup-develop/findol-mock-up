@@ -446,6 +446,14 @@ var autoZeroCounter int = 0
 //結果ランキングにランキングを送るためのソート終了の判定用
 var completeSortEval bool = false
 
+type SortTarget struct {
+	ArticleDetailUrl string
+	ImageUrl string
+	Name string
+}
+
+var accessDataset = make(map[string]map[string][]string)
+
 func handlerSort(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
 	c.Infof("ソートします?")
@@ -455,6 +463,7 @@ func handlerSort(w http.ResponseWriter, r *http.Request) {
 		keepArray = make([]string, 0)
 		completeSortEval = false
 		rank = make([]string, 0)
+		accessDataset = make(map[string]map[string][]string)
 
 		/*** JSONパースここから ***/
 		var detailDatasets []DetailDataset
@@ -468,7 +477,6 @@ func handlerSort(w http.ResponseWriter, r *http.Request) {
 		/*** JSONパースここまで ***/
 
 		//各人の詳細はこの多重連想配列を仲介して行う
-		accessDataset := make(map[string]map[string][]string)
 		for i := 0; i < len(detailDatasets); i++ {
 			accessDataset[detailDatasets[i].Index] = make(map[string][]string)
 			accessDataset[detailDatasets[i].Index]["ArticleDetailUrl"] = []string{detailDatasets[i].ArticleDetailUrl}
@@ -482,11 +490,17 @@ func handlerSort(w http.ResponseWriter, r *http.Request) {
 			rank = append(rank, strconv.Itoa(rand.Intn(len(detailDatasets))))
 		}
 
+		sortTarget := make([]SortTarget, 0)
+		for i := 0; i < 2; i++{
+			sortTarget = append(sortTarget, SortTarget{accessDataset[rank[i]]["ArticleDetailUrl"][0], accessDataset[rank[i]]["ImageUrl"][0], accessDataset[rank[i]]["Name"][0]})
+		}
+
 		c.Infof(rank[0] +  " と " + rank[1] + " どっちの数字が好き?")
 
 		tmpArray := []string{rank[0], rank[1]}
 		data := map[string]interface{}{
 			"Rank": tmpArray,
+			"SortTarget": sortTarget,
 		}
 		c.Infof("ポストないで")
 		renderForFindol("./recommend/template/view_findol.html", w, data)
@@ -528,6 +542,7 @@ func handlerSort(w http.ResponseWriter, r *http.Request) {
 			data := map[string]interface{}{
 				"Rank": rankArray,
 			}
+			//送り先は/recommend
 			renderForFindol("./recommend/template/view_findol.html", w, data)
 		}
 		c.Infof("ソート結果の逆順ここまで")
@@ -551,9 +566,16 @@ func merge(a, b []string, r *http.Request, w http.ResponseWriter)[]string{
 			c.Infof(a[i] + "と" + b[j] + " どっちの数字が好き?")
 			indicateCounter++
 
+			sortTarget := make([]SortTarget, 0)
+			tmpTarget := []string{a[i], b[j]}
+			for i := 0; i < 2; i++{
+				sortTarget = append(sortTarget, SortTarget{accessDataset[tmpTarget[i]]["ArticleDetailUrl"][0], accessDataset[tmpTarget[i]]["ImageUrl"][0], accessDataset[tmpTarget[i]]["Name"][0]})
+			}
+
 			tmpArray := []string{a[i], b[j]}
 			data := map[string]interface{}{
 				"Rank": tmpArray,
+				"SortTarget": sortTarget,
 			}
 			renderForFindol("./recommend/template/view_findol.html", w, data)
 		}
