@@ -422,55 +422,111 @@ func handlerList(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+/**
+ *
+ * append
+ */
+var rank []int = []int{5, 4, 3, 2, 1}
+//マージソートの終了判定用カウンタ. マージ回数を保持
+var mergeCounter int = 0
+//ソート途中の配列を保持
+var keepArray = make([]string, 0)
+//ソート進行形カウンタ
+var sortCounter int = 0
+//ソート進行形カウンタを一度最初に処理する
+var sortEval bool = true
+
 func handlerSort(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
 	c.Infof("ソートします?")
 
+	if r.Method != "POST" {
+		c.Infof("5 と 4 どっちの数字が好き?")
 
-	rank := []int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1}
-	data := map[string]interface{}{
-		"Rank": rank,
+		data := map[string]interface{}{
+			"Rank": rank,
+		}
+		c.Infof("ポストないで")
+		renderForFindol("./recommend/template/view_findol.html", w, data)
+		return
+	}else{
+		c.Infof("ポストあんで")
+		//keepArray = append(keepArray, "1", "1")
+		sortEval = true
+		sortCounter = 0
+		mergeCounter = 0
+
+		answer := mergeSort(rank, r, w)
+		c.Infof("ソート結果ここから")
+		for _, v:=range answer{
+			c.Infof(strconv.Itoa(v))
+		}
+		c.Infof("ソート結果ここまで")
+
+		tmp := make([]int, 0)
+		c.Infof("ソート結果の逆順ここから")
+		for i, _ := range answer {
+			tmp = append(tmp, answer[len(answer) - 1 - i])
+		}
+		for _, v:=range tmp{
+			c.Infof(strconv.Itoa(v))
+		}
+		c.Infof("ソート結果の逆順ここまで")
 	}
-	renderForFindol("./recommend/template/view_findol.html", w, data)
-
-	//マージソート
-	answer := mergeSort(rank)
-
-	tmp := make([]int, 0)
-	for i, _ := range answer {
-		tmp = append(tmp, answer[len(answer) - 1 - i])
-	}
-
-
-//	if r.Method != "POST" {
-//		w.WriteHeader(http.StatusNotFound)
-//		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
-//		fmt.Fprintf(w, "Not Found")
-//		return
-//	}else {
-//		//POSTされた番号表示
-//		c.Infof(r.FormValue("index"))
-//
-//		/***** テンプレーティングここから *****/
-//		index, _ := strconv.Atoi(r.FormValue("index"))
-//
-//		data := map[string]interface{}{
-//			"Person": person[index],
-//		}
-//		renderForPhoto("./recommend/template/view_photo.html", w, data)
-//		/***** テンプレーティングここまで *****/
-//	}
 }
 
-func merge(a, b []int)[]int{
+//ユーザーに好きな数字を選択させる
+func merge(a, b []int, r *http.Request, w http.ResponseWriter)[]int{
+	c := appengine.NewContext(r)
+
 	tmp := make([]int, len(a)+len(b))
 	i, j := 0, 0
+	eval := 0
+	hoge := 0
 
 	for i < len(a) && j < len(b){
-		if a[i] <= b[j]{
+		if sortEval == false && hoge == 0 {
+			c.Infof("")
+			c.Infof(strconv.Itoa(a[i]) + "と" + strconv.Itoa(b[j]) + " どっちの数字が好き?")
+			hoge++
+
+			data := map[string]interface{}{
+				"Rank": rank,
+			}
+			renderForFindol("./recommend/template/view_findol.html", w, data)
+		}
+
+		//POSTされた番号表示
+//		c.Infof(r.FormValue("index"))
+
+		if sortEval == true {
+			if len(keepArray) == sortCounter {
+				//POSTされた番号表示
+				c.Infof(r.FormValue("index"))
+
+				keepArray = append(keepArray, r.FormValue("index"))
+				sortEval = false
+
+				switch r.FormValue("index"){
+				case "0":
+					eval = 0
+				case "1":
+					eval = 1
+				default:
+				}
+			}else {
+				eval, _ = strconv.Atoi(keepArray[sortCounter])
+				c.Infof("保存されたやつ: " + strconv.Itoa(eval))
+			}
+		}else {
+			c.Infof("自動0: " + strconv.Itoa(eval))
+		}
+		sortCounter++
+
+		if eval == 1{
 			tmp[i+j] = a[i]
 			i++
-		}else{
+		}else if eval == 0{
 			tmp[i+j] = b[j]
 			j++
 		}
@@ -486,12 +542,22 @@ func merge(a, b []int)[]int{
 		j++
 	}
 
+	mergeCounter++
+	//マージソート
+	if mergeCounter == len(rank) - 1 {
+		//ここに結果ランキングに投げる処理
+		c.Infof("マージ回数: " + strconv.Itoa(mergeCounter) + ", " + "ソート回数: " + strconv.Itoa(len(keepArray)) + ", 選択された数字: ")
+		for _, v:=range keepArray {
+			c.Infof(v)
+		}
+		c.Infof("")
+	}
 	return tmp
 }
 
-func mergeSort(items []int)[]int{
+func mergeSort(items []int, r *http.Request, w http.ResponseWriter)[]int{
 	if len(items) > 1{
-		return merge(mergeSort(items[:len(items)/2]), mergeSort(items[len(items)/2:]))
+		return merge(mergeSort(items[:len(items)/2], r, w), mergeSort(items[len(items)/2:], r, w), r, w)
 	}
 
 	return items
