@@ -10,6 +10,8 @@ import (
 	"html/template"
 	"io"
 	"strconv"
+	"math/rand"
+	"time"
 )
 
 //logirl_details_id_1to328.jsonパース用構造体
@@ -135,6 +137,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	for i:= 0; i < 5; i++ {
 		testRankAry = append(testRankAry, strconv.Itoa(4 - i))
 	}
+	//各人の詳細はこの多重連想配列を仲介して行う
 	accessDataset := make(map[string]map[string][]string)
 	for i := 0; i < len(detailDatasets); i++ {
 		accessDataset[detailDatasets[i].Index] = make(map[string][]string)
@@ -426,7 +429,8 @@ func handlerList(w http.ResponseWriter, r *http.Request) {
  * Findolのメインページの処理
  */
 //ソート対象の配列
-var rank []string = []string{"10", "9", "8", "7", "6", "5", "4", "3", "2", "1"}
+//var rank []string = []string{"10", "9", "8", "7", "6", "5", "4", "3", "2", "1"}
+var rank []string
 //マージソートの終了判定用カウンタ. マージ回数を保持
 var mergeCounter int = 0
 //ソート途中の配列を保持
@@ -450,6 +454,33 @@ func handlerSort(w http.ResponseWriter, r *http.Request) {
 		//システムを1回利用する毎に初期化するやつら
 		keepArray = make([]string, 0)
 		completeSortEval = false
+		rank = make([]string, 0)
+
+		/*** JSONパースここから ***/
+		var detailDatasets []DetailDataset
+		//[]byte型での読み込み
+		file, err := ioutil.ReadFile("./json/logirl_details_id_1to328_array.json") //ロガールid1~328についての詳細
+		json_err := json.Unmarshal(file, &detailDatasets)
+		if err != nil {
+			log.Fatal(err)
+			log.Fatal(json_err)
+		}
+		/*** JSONパースここまで ***/
+
+		//各人の詳細はこの多重連想配列を仲介して行う
+		accessDataset := make(map[string]map[string][]string)
+		for i := 0; i < len(detailDatasets); i++ {
+			accessDataset[detailDatasets[i].Index] = make(map[string][]string)
+			accessDataset[detailDatasets[i].Index]["ArticleDetailUrl"] = []string{detailDatasets[i].ArticleDetailUrl}
+			accessDataset[detailDatasets[i].Index]["ImageUrl"] = detailDatasets[i].ImageUrl
+			accessDataset[detailDatasets[i].Index]["Name"] = []string{detailDatasets[i].Name}
+		}
+
+		//乱数のシード生成
+		rand.Seed(time.Now().UnixNano())
+		for i := 0; i < 10; i++ {
+			rank = append(rank, strconv.Itoa(rand.Intn(len(detailDatasets))))
+		}
 
 		c.Infof(rank[0] +  " と " + rank[1] + " どっちの数字が好き?")
 
