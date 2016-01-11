@@ -435,12 +435,16 @@ var keepArray = make([]string, 0)
 var sortCounter int = 0
 //ソート進行形カウンタを一度最初に処理する
 var sortEval bool = true
+var hoge  int = 0
+var autoZeroCounter int = 0
 
 func handlerSort(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
 	c.Infof("ソートします?")
 
 	if r.Method != "POST" {
+		keepArray = make([]string, 0)
+
 		c.Infof("5 と 4 どっちの数字が好き?")
 
 		data := map[string]interface{}{
@@ -454,7 +458,9 @@ func handlerSort(w http.ResponseWriter, r *http.Request) {
 		//keepArray = append(keepArray, "1", "1")
 		sortEval = true
 		sortCounter = 0
+		hoge = 0
 		mergeCounter = 0
+		autoZeroCounter = 0
 
 		answer := mergeSort(rank, r, w)
 		c.Infof("ソート結果ここから")
@@ -482,7 +488,6 @@ func merge(a, b []int, r *http.Request, w http.ResponseWriter)[]int{
 	tmp := make([]int, len(a)+len(b))
 	i, j := 0, 0
 	eval := 0
-	hoge := 0
 
 	for i < len(a) && j < len(b){
 		if sortEval == false && hoge == 0 {
@@ -502,7 +507,7 @@ func merge(a, b []int, r *http.Request, w http.ResponseWriter)[]int{
 		if sortEval == true {
 			if len(keepArray) == sortCounter {
 				//POSTされた番号表示
-				c.Infof(r.FormValue("index"))
+				c.Infof("POSTされたINDEX: " + r.FormValue("index"))
 
 				keepArray = append(keepArray, r.FormValue("index"))
 				sortEval = false
@@ -520,6 +525,7 @@ func merge(a, b []int, r *http.Request, w http.ResponseWriter)[]int{
 			}
 		}else {
 			c.Infof("自動0: " + strconv.Itoa(eval))
+			autoZeroCounter++
 		}
 		sortCounter++
 
@@ -543,14 +549,26 @@ func merge(a, b []int, r *http.Request, w http.ResponseWriter)[]int{
 	}
 
 	mergeCounter++
-	//マージソート
+
+	//マージソート終了時
 	if mergeCounter == len(rank) - 1 {
-		//ここに結果ランキングに投げる処理
-		c.Infof("マージ回数: " + strconv.Itoa(mergeCounter) + ", " + "ソート回数: " + strconv.Itoa(len(keepArray)) + ", 選択された数字: ")
-		for _, v:=range keepArray {
-			c.Infof(v)
+		//keepArrayに要素があって, 自動0がされなかったら
+		if autoZeroCounter == 0 {
+			//ここに結果ランキングに投げる処理
+			c.Infof("")
+			c.Infof("押米！！！！！！！" )
+
+			data := map[string]interface{}{
+				"Rank": keepArray,
+			}
+			renderForFindol("./recommend/template/view_findol.html", w, data)
+
+			c.Infof("マージ回数: " + strconv.Itoa(mergeCounter) + ", " + "ソート回数: " + strconv.Itoa(len(keepArray)) + ", 選択された数字: ")
+			for _, v:=range keepArray {
+				c.Infof(v)
+			}
+			c.Infof("")
 		}
-		c.Infof("")
 	}
 	return tmp
 }
