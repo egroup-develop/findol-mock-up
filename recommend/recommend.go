@@ -137,6 +137,16 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	for i:= 0; i < 5; i++ {
 		testRankAry = append(testRankAry, strconv.Itoa(4 - i))
 	}
+
+	if len(pipeRankAry) == 5 {
+		testRankAry = make([]string, 0)
+		testRankAry = pipeRankAry
+		c.Infof("送られた結果:::")
+		for _, v:=range testRankAry {
+			c.Infof(v)
+		}
+	}
+
 	//各人の詳細はこの多重連想配列を仲介して行う
 	accessDataset := make(map[string]map[string][]string)
 	for i := 0; i < len(detailDatasets); i++ {
@@ -445,6 +455,8 @@ var indicateCounter  int = 0
 var autoZeroCounter int = 0
 //結果ランキングにランキングを送るためのソート終了の判定用
 var completeSortEval bool = false
+//testRankAryと共有する結果配列
+var pipeRankAry = make([]string, 0)
 
 type SortTarget struct {
 	ArticleDetailUrl string
@@ -539,11 +551,21 @@ func handlerSort(w http.ResponseWriter, r *http.Request) {
 				}
 				rankArray = append(rankArray, v)
 			}
-			data := map[string]interface{}{
-				"Rank": rankArray,
+//			data := map[string]interface{}{
+//				"Rank": rankArray,
+//			}
+//			//送り先は/recommend
+//			renderForFindol("./recommend/template/view_findol.html", w, data)
+
+			pipeRankAry = make([]string, 0)
+			pipeRankAry = rankArray
+			c.Infof("送る結果:::")
+			for _, v:=range pipeRankAry {
+				c.Infof(v)
 			}
-			//送り先は/recommend
-			renderForFindol("./recommend/template/view_findol.html", w, data)
+			//結果ランキングの各人の画像を表示するためにpersonを初期化
+			person = make([]Person, 0)
+			http.Redirect(w, r, "/recommend", http.StatusFound)
 		}
 		c.Infof("ソート結果の逆順ここまで")
 		/*** ソートに係る全ての処理が終わったら結果ランキングへ上位5件結果(rankArray)を送る. ここまで ***/
