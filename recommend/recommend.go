@@ -498,10 +498,32 @@ func handlerSort(w http.ResponseWriter, r *http.Request) {
 
 		//乱数のシード生成
 		rand.Seed(time.Now().UnixNano())
-		for i := 0; i < 10; i++ {
-			rank = append(rank, strconv.Itoa(rand.Intn(len(detailDatasets))))
+
+		//乱数で10人アイドルを選出
+		i := 0
+		for i < 10 {
+			j := 0
+			doubleEval := 0
+
+			//乱数が重複しないための比較用変数
+			comper := strconv.Itoa(rand.Intn(len(detailDatasets)))
+
+			for j < len(rank) {
+				//重複していたらカウントアップ
+				if rank[j] == comper {
+					doubleEval += 1
+				}
+
+				j += 1
+			}
+
+			if doubleEval == 0 {
+				rank = append(rank, comper)
+				i += 1
+			}
 		}
 
+		//最初の2人を初期画面表示用に前から2人取得
 		sortTarget := make([]SortTarget, 0)
 		for i := 0; i < 2; i++{
 			sortTarget = append(sortTarget, SortTarget{accessDataset[rank[i]]["ArticleDetailUrl"][0], accessDataset[rank[i]]["ImageUrl"][0], accessDataset[rank[i]]["Name"][0]})
