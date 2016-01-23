@@ -466,6 +466,16 @@ type SortTarget struct {
 	Name string
 }
 
+/*** 進捗率の計算のためにレンダリングのタイミングを変えた. ここから ***/
+var tmpTmpArray = []string{"0", "0"}
+var tmpSortTarget = make([]SortTarget, 0)
+var tmpData = map[string]interface{}{
+"Rank": tmpTmpArray,
+"SortTarget": tmpSortTarget,
+}
+
+/*** 進捗率の計算のためにレンダリングのタイミングを変えた. ここまで ***/
+
 var accessDataset = make(map[string]map[string][]string)
 
 func handlerSort(w http.ResponseWriter, r *http.Request) {
@@ -560,12 +570,22 @@ func handlerSort(w http.ResponseWriter, r *http.Request) {
 		showProgress := 18 - progressCounter
 		if showProgress == 0 {
 			c.Infof("進捗率---------->>>>>>>>> 0 パーセント")
+
+			/*** 進捗率の計算のためにレンダリングのタイミングを変えた. ここから ***/
+			renderForFindol("./recommend/template/view_findol.html", w, tmpData)
+			/*** 進捗率の計算のためにレンダリングのタイミングを変えた. ここまで ***/
 		} else {
 			calProgress := 18.0
 			tmpShowProgress, _ := strconv.ParseFloat(strconv.Itoa(showProgress), 32)
 			resultProgress := tmpShowProgress / calProgress
 			resultProgress= resultProgress * 100
 			c.Infof("進捗率---------->>>>>>>>> " + strconv.FormatFloat(resultProgress, 'f', 4, 64) + " パーセント")
+
+			/*** 進捗率の計算のためにレンダリングのタイミングを変えた. ここから ***/
+			if resultProgress != 100.0000 {
+				renderForFindol("./recommend/template/view_findol.html", w, tmpData)
+			}
+			/*** 進捗率の計算のためにレンダリングのタイミングを変えた. ここまで ***/
 		}
 		/*** 進捗率の計算. ここまで ***/
 
@@ -634,18 +654,20 @@ func merge(a, b []string, r *http.Request, w http.ResponseWriter)[]string{
 			c.Infof(a[i] + "と" + b[j] + " どっちの数字が好き?")
 			indicateCounter++
 
-			sortTarget := make([]SortTarget, 0)
+			/*** 進捗率の計算のためにレンダリングのタイミングを変えた. ここから ***/
+			tmpSortTarget = make([]SortTarget, 0)
 			tmpTarget := []string{a[i], b[j]}
 			for i := 0; i < 2; i++{
-				sortTarget = append(sortTarget, SortTarget{accessDataset[tmpTarget[i]]["ArticleDetailUrl"][0], accessDataset[tmpTarget[i]]["ImageUrl"][0], accessDataset[tmpTarget[i]]["Name"][0]})
+				//二者択一対象の記事URL, 画像URL, 名前を取得
+				tmpSortTarget = append(tmpSortTarget, SortTarget{accessDataset[tmpTarget[i]]["ArticleDetailUrl"][0], accessDataset[tmpTarget[i]]["ImageUrl"][0], accessDataset[tmpTarget[i]]["Name"][0]})
 			}
 
-			tmpArray := []string{a[i], b[j]}
-			data := map[string]interface{}{
-				"Rank": tmpArray,
-				"SortTarget": sortTarget,
+			tmpTmpArray = []string{a[i], b[j]}
+			tmpData = map[string]interface{}{
+				"Rank": tmpTmpArray,
+				"SortTarget": tmpSortTarget,
 			}
-			renderForFindol("./recommend/template/view_findol.html", w, data)
+			/*** 進捗率の計算のためにレンダリングのタイミングを変えた. ここまで ***/
 		}
 
 		if sortEval == true {
