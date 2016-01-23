@@ -23,27 +23,24 @@
         </div>
         <!-- Tabs -->
         <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
-            <a href="#scroll-tab-1" class="mdl-layout__tab is-active">アイ択</a>
+            <a href="#scroll-tab-1" class="mdl-layout__tab is-active"><font size="5">アイ択</font></a>
         </div>
     </header>
     <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">FinDoL</span>
+        <span class="mdl-layout-title"><b>FinDoL</b></span>
         <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="">Link</a>
-            <a class="mdl-navigation__link" href="">Link</a>
-            <a class="mdl-navigation__link" href="">Link</a>
-            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="/findol"><font size="4">アイ択</font></a>
+            <a class="mdl-navigation__link" href="//logirl.favclip.com/"><font size="4">LoGiRL</font></a>
+            <!--<a class="mdl-navigation__link" href="">Link</a>-->
+            <!--<a class="mdl-navigation__link" href="">Link</a>-->
+            <!--<a class="mdl-navigation__link" href="">Link</a>-->
         </nav>
     </div>
     <main class="mdl-layout__content">
         <section class="mdl-layout__tab-panel is-active" id="scroll-tab-1">
             <div class="page-content">
                 <div class="content container bg-default">
-                    <div class="mdl-grid">
-                        <div class="mdl-cell mdl-cell--4-col"></div>
-                        <div class="mdl-cell mdl-cell--4-col">{{template "findolContentBody" .}}</div>
-                        <div class="mdl-cell mdl-cell--4-col"></div>
-                    </div>
+                    {{template "findolContentBody" .}}
                 </div>
             </div>
         </section>
@@ -56,9 +53,9 @@
         right: 25px;
         }
     </style>
-    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" id="back">
-        <i class="material-icons">add</i>
-    </button>
+    <!--<button class="mdl-button mdl-js-button mdl-button&#45;&#45;fab mdl-button&#45;&#45;colored" id="back">-->
+        <!--<i class="material-icons">add</i>-->
+    <!--</button>-->
 </div>
 
 <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>

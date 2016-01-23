@@ -1,7 +1,38 @@
 <!--画像一覧表示-->
 {{define "findolContentBody"}}
+
 {{range $i, $v := .SortTarget}}
 <style>
+@media screen and (min-width: 481px) {
+    .demo-card-image.mdl-card {
+    width: 512px;
+    height: 512px;
+    }
+    .back-image-{{$i}}{
+    background: url({{$v.ImageUrl |html}}) center / cover;
+    }
+    .demo-card-image > .mdl-card__actions {
+    height: 104px;
+    padding: 32px;
+    background: rgba(0, 0, 0, 0.2);
+    }
+    .demo-card-image__filename {
+    color: #fff;
+    font-size: 28px;
+    font-weight: 1000;
+    }
+    .image-jump-to-article {
+    opacity: 0.0;
+    color: Transparent;
+    width: 512;
+    height: 512;
+    }
+}
+
+<!--@media screen and (max-width: 760px) {-->
+<!--}-->
+
+@media screen and (max-width: 480px) {
     .demo-card-image.mdl-card {
     width: 256px;
     height: 256px;
@@ -25,18 +56,58 @@
     width: 256;
     height: 256;
     }
-</style>
+}
 
-<form method="POST" action="findol">
-    <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-{{$i}}">
-        <input type="submit" value={{$i}} class="image-jump-to-article" name="index">
-        <div class="mdl-card__actions">
-            <span class="demo-card-image__filename">{{$v.Name |html}}</span>
-        </div>
-    </div>
-</form>
-<br>
+<!--@media screen and (max-width: 320px) {-->
+<!--}-->
+</style>
 {{end}}
+
+<!--{{range $i, $v := .SortTarget}}-->
+<!--<style>-->
+    <!--.demo-card-image.mdl-card {-->
+    <!--width: 512px;-->
+    <!--height: 512px;-->
+    <!--}-->
+    <!--.back-image-{{$i}}{-->
+    <!--background: url({{$v.ImageUrl |html}}) center / cover;-->
+    <!--}-->
+    <!--.demo-card-image > .mdl-card__actions {-->
+    <!--height: 104px;-->
+    <!--padding: 32px;-->
+    <!--background: rgba(0, 0, 0, 0.2);-->
+    <!--}-->
+    <!--.demo-card-image__filename {-->
+    <!--color: #fff;-->
+    <!--font-size: 28px;-->
+    <!--font-weight: 1000;-->
+    <!--}-->
+    <!--.image-jump-to-article {-->
+    <!--opacity: 0.0;-->
+    <!--color: Transparent;-->
+    <!--width: 512;-->
+    <!--height: 512;-->
+    <!--}-->
+<!--</style>-->
+<!--{{end}}-->
+
+<div class="mdl-grid">
+    <!--<div class="mdl-cell mdl-cell&#45;&#45;4-col"></div>-->
+    {{range $i, $v := .SortTarget}}
+    <div class="mdl-cell mdl-cell--6-col">
+        <form method="POST" action="findol">
+            <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-{{$i}}">
+                <input type="submit" value={{$i}} class="image-jump-to-article" name="index">
+                <div class="mdl-card__actions">
+                    <span class="demo-card-image__filename">{{$v.Name |html}}</span>
+                </div>
+            </div>
+        </form>
+    </div>
+    {{end}}
+    <!--<div class="mdl-cell mdl-cell&#45;&#45;4-col"></div>-->
+</div>
+
 {{end}}
 
 
