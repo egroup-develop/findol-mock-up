@@ -457,6 +457,8 @@ var autoZeroCounter int = 0
 var completeSortEval bool = false
 //testRankAryと共有する結果配列
 var pipeRankAry = make([]string, 0)
+//進捗率のためのカウンタ
+var progressCounter int = 0
 
 type SortTarget struct {
 	ArticleDetailUrl string
@@ -476,6 +478,7 @@ func handlerSort(w http.ResponseWriter, r *http.Request) {
 		completeSortEval = false
 		rank = make([]string, 0)
 		accessDataset = make(map[string]map[string][]string)
+		progressCounter = 0
 
 		/*** JSONパースここから ***/
 		var detailDatasets []DetailDataset
@@ -547,16 +550,37 @@ func handlerSort(w http.ResponseWriter, r *http.Request) {
 		indicateCounter = 0
 		mergeCounter = 0
 		autoZeroCounter = 0
+		progressCounter = 0
 
 		answer := mergeSort(rank, r, w)
+
+		/*** 進捗率の計算. ここから ***/
+		c.Infof("残り " + strconv.Itoa(progressCounter) + "回")
+		//10回のソートは, 自動0が18個から始まる
+		showProgress := 18 - progressCounter
+		if showProgress == 0 {
+			c.Infof("進捗率---------->>>>>>>>> 0 パーセント")
+		} else {
+			calProgress := 18.0
+			tmpShowProgress, _ := strconv.ParseFloat(strconv.Itoa(showProgress), 32)
+			resultProgress := tmpShowProgress / calProgress
+			resultProgress= resultProgress * 100
+			c.Infof("進捗率---------->>>>>>>>> " + strconv.FormatFloat(resultProgress, 'f', 4, 64) + " パーセント")
+		}
+		/*** 進捗率の計算. ここまで ***/
+
 		c.Infof("ソート結果ここから")
+
 		for _, v:=range answer{
 			c.Infof(v)
 		}
+
 		c.Infof("ソート結果ここまで")
 
 		tmp := make([]string, 0)
+
 		c.Infof("ソート結果の逆順ここから")
+
 		for i, _ := range answer {
 			tmp = append(tmp, answer[len(answer) - 1 - i])
 		}
@@ -647,6 +671,8 @@ func merge(a, b []string, r *http.Request, w http.ResponseWriter)[]string{
 		}else {
 			c.Infof("自動0: " + strconv.Itoa(eval))
 			autoZeroCounter++
+
+			progressCounter++
 		}
 		sortCounter++
 
