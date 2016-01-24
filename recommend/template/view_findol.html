@@ -113,5 +113,20 @@
 
 <!--進捗率の表示-->
 {{define "findolContentProgress"}}
-<p>進捗率 {{.Progress |html}} パーセント！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！</p>
+<style>
+    p.leftside{
+        text-align: left;
+    }
+    p.center{
+        text-align: center;
+    }
+</style>
+<p> </p>
+<p class="center">気になる方をタップ</p>
+<p> </p>
+
+<div class="progress">
+    <div class="progress-bar progress-bar-success" style="width: {{.Progress |html}}%"></div>
+    <p class="leftside"><font size="4">{{.Progress |html}} ％</font></p>
+</div>
 {{end}}

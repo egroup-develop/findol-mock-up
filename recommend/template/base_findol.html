@@ -19,7 +19,7 @@
     <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
             <!-- Title -->
-            <span class="mdl-layout-title">FinDoL</span>
+            <span class="mdl-layout-title"><font size="5">FinDoL</font></span>
         </div>
         <!-- Tabs -->
         <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
@@ -39,8 +39,8 @@
     <main class="mdl-layout__content">
         <section class="mdl-layout__tab-panel is-active" id="scroll-tab-1">
             <div class="page-content">
-                {{template "findolContentProgress" .}}
                 <div class="content container bg-default">
+                    {{template "findolContentProgress" .}}
                     {{template "findolContentBody" .}}
                 </div>
             </div>
@@ -57,6 +57,20 @@
     <!--<button class="mdl-button mdl-js-button mdl-button&#45;&#45;fab mdl-button&#45;&#45;colored" id="back">-->
         <!--<i class="material-icons">add</i>-->
     <!--</button>-->
+
+
+    <!-- footer -->
+    <style>
+        #footer{
+        background-color: #2E2E2E;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        color : #fff;
+        margin-top:30px;
+        }
+    </style>
+    <div id="footer">intern - 2016</div>
 </div>
 
 <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
