@@ -1,4 +1,4 @@
-<!--画像一覧表示-->
+<!--二者択一の画像表示-->
 {{define "findolContentBody"}}
 
 {{range $i, $v := .SortTarget}}
@@ -111,3 +111,7 @@
 {{end}}
 
 
+<!--進捗率の表示-->
+{{define "findolContentProgress"}}
+<p>進捗率 {{.Progress |html}} パーセント！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！</p>
+{{end}}

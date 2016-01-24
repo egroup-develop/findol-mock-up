@@ -469,6 +469,7 @@ type SortTarget struct {
 /*** 進捗率の計算のためにレンダリングのタイミングを変えた. ここから ***/
 var tmpTmpArray = []string{"0", "0"}
 var tmpSortTarget = make([]SortTarget, 0)
+//var progress int = 0
 var tmpData = map[string]interface{}{
 "Rank": tmpTmpArray,
 "SortTarget": tmpSortTarget,
@@ -481,6 +482,13 @@ var accessDataset = make(map[string]map[string][]string)
 func handlerSort(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
 	c.Infof("ソートします?")
+
+	/*** 進捗率の計算のためにレンダリングのタイミングを変えた. ここから ***/
+	tmpData = map[string]interface{}{
+		"Rank": tmpTmpArray,
+		"SortTarget": tmpSortTarget,
+	}
+	/*** 進捗率の計算のためにレンダリングのタイミングを変えた. ここまで ***/
 
 	if r.Method != "POST" {
 		//システムを1回利用する毎に初期化するやつら
@@ -550,6 +558,10 @@ func handlerSort(w http.ResponseWriter, r *http.Request) {
 			"SortTarget": sortTarget,
 		}
 		c.Infof("ポストないで")
+
+		//data(view_findol.html)に進捗率を追加_
+		data["Progress"] = "0"
+
 		renderForFindol("./recommend/template/view_findol.html", w, data)
 		return
 	}else{
@@ -569,9 +581,12 @@ func handlerSort(w http.ResponseWriter, r *http.Request) {
 		//10回のソートは, 自動0が18個から始まる
 		showProgress := 18 - progressCounter
 		if showProgress == 0 {
-			c.Infof("進捗率---------->>>>>>>>> 0 パーセント")
+			c.Infof("進捗率>>>>>>>>>>>>>>>>>>>>>>>>>>>> 0 パーセント")
 
 			/*** 進捗率の計算のためにレンダリングのタイミングを変えた. ここから ***/
+			//(tmpData)view_findol.htmlに進捗率を追加
+			tmpData["Progress"] = "0"
+
 			renderForFindol("./recommend/template/view_findol.html", w, tmpData)
 			/*** 進捗率の計算のためにレンダリングのタイミングを変えた. ここまで ***/
 		} else {
@@ -579,9 +594,13 @@ func handlerSort(w http.ResponseWriter, r *http.Request) {
 			tmpShowProgress, _ := strconv.ParseFloat(strconv.Itoa(showProgress), 32)
 			resultProgress := tmpShowProgress / calProgress
 			resultProgress= resultProgress * 100
-			c.Infof("進捗率---------->>>>>>>>> " + strconv.FormatFloat(resultProgress, 'f', 4, 64) + " パーセント")
+			c.Infof("進捗率>>>>>>>>>>>>>>>>>>>>>>>>>>>>  " + strconv.FormatFloat(resultProgress, 'f', 4, 64) + " パーセント")
+			c.Infof("進捗率>>>>>>>>>>>>>>>>>>>>>>>>>>>>  " + strconv.Itoa(int(resultProgress)) + " パーセント")
 
 			/*** 進捗率の計算のためにレンダリングのタイミングを変えた. ここから ***/
+			//(tmpData)view_findol.htmlに進捗率を追加
+			tmpData["Progress"] = strconv.Itoa(int(resultProgress))
+
 			if resultProgress != 100.0000 {
 				renderForFindol("./recommend/template/view_findol.html", w, tmpData)
 			}
