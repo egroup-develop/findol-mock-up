@@ -298,6 +298,18 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	/***** オススメ一覧用ここまで *****/
 
 	/***** テンプレーティングここから *****/
+	/***** ランキングに順位をつけるために加えた2016-01-26. ここから *****/
+	type ResultRanking struct {
+		Name string
+		Rank string
+		Index string
+	}
+	resultRanking := make([]ResultRanking, 0)
+	for i := 0; i < 5; i++{
+		resultRanking = append(resultRanking, ResultRanking{nameAry[i], strconv.Itoa(i+1), strconv.Itoa(i)})
+	}
+	/***** ランキングに順位をつけるために加えた2016-01-26. ここから *****/
+
 	type Person1 struct {
 		ArticleDetailUrl string
 		Index string
@@ -363,6 +375,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		"ImageUrlAry": imageUrlAry,
 		"NameAry": nameAry,
 		"IndexAry": indexAry,
+		"ResultRanking": resultRanking,
 		"ArticleDetailUrlAry1": articleDetailUrlAry1,
 		"ImageUrlAry1": imageUrlAry1,
 		"NameAry1": nameAry1,

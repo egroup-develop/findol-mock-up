@@ -54,6 +54,8 @@
 
     .back-image-{{$i}}{
     background: url({{$v |html}}) center / cover;
+    position: relative;
+    width: 256px;
     }
     .demo-card-image > .mdl-card__actions {
     height: 52px;
@@ -71,21 +73,33 @@
     width: 256;
     height: 256;
     }
+
+    .badge-extend {
+        position: absolute;
+        left: 5px;
+        top: 5px;
+    }
 </style>
 {{end}}
-{{range $i, $v := .NameAry}}
+{{range $i, $v := .ResultRanking}}
 <form method="POST" action="recommend/photolist">
 <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-{{$i}}">
     <!--<div class="mdl-card__title mdl-card&#45;&#45;expand"></div>-->
     <input type="submit" value={{$i}} class="image-jump-to-article" name="index">
     <div class="mdl-card__actions">
-        <span class="demo-card-image__filename">{{$v |html}}</span>
+        <span class="demo-card-image__filename">{{$v.Name |html}}</span>
     </div>
+
+    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored badge-extend">
+        <span>{{$v.Rank}}<i class="material-icons"></i></span>
+    </button>
+
 </div>
 </form>
 <br>
 {{end}}
 {{end}}
+
 
 
 <!--オススメ一覧-->
