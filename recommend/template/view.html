@@ -64,7 +64,7 @@
     }
     .demo-card-image__filename {
     color: #fff;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 500;
     }
     .image-jump-to-article {
@@ -81,6 +81,16 @@
     }
 </style>
 {{end}}
+
+<style>
+    #main-title{
+        <!--position: fixed;-->
+    }
+</style>
+<p> </p>
+<p id="main-title"><font size="5"><b>タップして画像を見る！</b></font></p>
+<p> </p>
+
 {{range $i, $v := .ResultRanking}}
 <form method="POST" action="recommend/photolist">
 <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-{{$i}}">
@@ -120,7 +130,7 @@
     }
     .demo-card-image__filename {
     color: #fff;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 500;
     }
 </style>
@@ -141,7 +151,7 @@
     }
     .demo-card-image__filename {
     color: #fff;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 500;
     }
 </style>
@@ -162,7 +172,7 @@
     }
     .demo-card-image__filename {
     color: #fff;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 500;
     }
 </style>
@@ -183,7 +193,7 @@
     }
     .demo-card-image__filename {
     color: #fff;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 500;
     }
 </style>
@@ -204,7 +214,7 @@
     }
     .demo-card-image__filename {
     color: #fff;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 500;
     }
 </style>
