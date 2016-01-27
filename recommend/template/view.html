@@ -2,7 +2,10 @@
 {{define "contentTitle"}}{{.Title |html}}{{end}}
 
 
-<!--コンテンツボディ-->
+
+
+
+<!----- コンテンツボディ ----->
 {{define "contentBody"}}
 <h1>{{.Title |html}}</h1>
 <article>{{.Body |html}}</article>
@@ -42,20 +45,25 @@
 {{end}}
 
 
-<!--結果ランキング-->
+
+
+
+<!----- 結果ランキング ----->
 {{define "resultContentBody"}}
 {{range $i, $v := .ImageUrlAry}}
 <style>
     .demo-card-image.mdl-card {
-    width: 256px;
-    height: 256px;
+    <!--width: 256px;-->
+    <!--height: 256px;-->
     <!--background: url({{$v |html}}) center / cover;-->
     }
 
     .back-image-{{$i}}{
+    width: 256px;
+    height: 256px;
     background: url({{$v |html}}) center / cover;
     position: relative;
-    width: 256px;
+    <!--width: 256px;-->
     }
     .demo-card-image > .mdl-card__actions {
     height: 52px;
@@ -112,15 +120,22 @@
 
 
 
-<!--オススメ一覧-->
+
+
+
+
+
+<!----- オススメ一覧 ----->
 {{define "recommendContentBody"}}
 {{range $i, $v := .ImageUrlAry1}}
 <style>
     .demo-card-image.mdl-card {
-    width: 256px;
-    height: 256px;
+    <!--width: 256px;-->
+    <!--height: 256px;-->
     }
     .back-image-1-{{$i}}{
+    width: 256px;
+    height: 256px;
     background: url({{$v |html}}) center / cover;
     }
     .demo-card-image > .mdl-card__actions {
@@ -138,10 +153,12 @@
 {{range $i, $v := .ImageUrlAry2}}
 <style>
     .demo-card-image.mdl-card {
-    width: 256px;
-    height: 256px;
+    <!--width: 256px;-->
+    <!--height: 256px;-->
     }
     .back-image-2-{{$i}}{
+    width: 256px;
+    height: 256px;
     background: url({{$v |html}}) center / cover;
     }
     .demo-card-image > .mdl-card__actions {
@@ -159,10 +176,12 @@
 {{range $i, $v := .ImageUrlAry3}}
 <style>
     .demo-card-image.mdl-card {
-    width: 256px;
-    height: 256px;
+    <!--width: 256px;-->
+    <!--height: 256px;-->
     }
     .back-image-3-{{$i}}{
+    width: 256px;
+    height: 256px;
     background: url({{$v |html}}) center / cover;
     }
     .demo-card-image > .mdl-card__actions {
@@ -180,10 +199,12 @@
 {{range $i, $v := .ImageUrlAry4}}
 <style>
     .demo-card-image.mdl-card {
-    width: 256px;
-    height: 256px;
+    <!--width: 256px;-->
+    <!--height: 256px;-->
     }
     .back-image-4-{{$i}}{
+    width: 256px;
+    height: 256px;
     background: url({{$v |html}}) center / cover;
     }
     .demo-card-image > .mdl-card__actions {
@@ -201,10 +222,12 @@
 {{range $i, $v := .ImageUrlAry5}}
 <style>
     .demo-card-image.mdl-card {
-    width: 256px;
-    height: 256px;
+    <!--width: 256px;-->
+    <!--height: 256px;-->
     }
     .back-image-5-{{$i}}{
+    width: 256px;
+    height: 256px;
     background: url({{$v |html}}) center / cover;
     }
     .demo-card-image > .mdl-card__actions {
@@ -219,6 +242,105 @@
     }
 </style>
 {{end}}
+
+
+
+
+{{range $i, $v := .ImageUrlAry}}
+<style>
+    .demo-card-image.mdl-card {
+    <!--width: 256px;-->
+    <!--height: 256px;-->
+    <!--background: url({{$v |html}}) center / cover;-->
+    }
+
+    .back-image-0-{{$i}}{
+    width: 256px;
+    height: 256px;
+    background: url({{$v |html}}) center / cover;
+    <!--width: 256px;-->
+    }
+    .demo-card-image > .mdl-card__actions {
+    height: 52px;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.2);
+    }
+    .demo-card-image__filename {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    }
+
+    .badge-extend {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    }
+</style>
+{{end}}
+
+<!--{{range $i, $v := .ResultRanking}}-->
+<!--<div class="mdl-grid">-->
+    <!--<div class="mdl-cell mdl-cell&#45;&#45;12-col">-->
+        <!--<div class="demo-card-image mdl-card mdl-shadow&#45;&#45;2dp back-image-0-{{$i}}">-->
+            <!--<div class="mdl-card__title mdl-card&#45;&#45;expand"></div>-->
+            <!--<div class="mdl-card__actions">-->
+                <!--<span class="demo-card-image__filename">{{$v.Name |html}}</span>-->
+            <!--</div>-->
+
+            <!--<button class="mdl-button mdl-js-button mdl-button&#45;&#45;fab mdl-button&#45;&#45;mini-fab mdl-button&#45;&#45;colored badge-extend">-->
+                <!--<span>{{$v.Rank}}<i class="material-icons"></i></span>-->
+            <!--</button>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--<div class="mdl-grid">-->
+
+    <!--<p id="hogehoge">あ</p>-->
+    <!--<p id="hogehoge1">い</p>-->
+
+
+    <!--<script>-->
+        <!--var a = {{$v.Name |html}};-->
+        <!--document.getElementById("hogehoge").textContent = a;-->
+
+        <!--var compareOperand = {{$i}};-->
+        <!--if (compareOperand == 2) {-->
+            <!--document.getElementById("hogehoge1").textContent = a;-->
+        <!--}-->
+    <!--</script>-->
+<!--{{end}}-->
+
+
+
+<!--  1位  -->
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--12-col">
+            <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-0-0">
+                <div class="mdl-card__title mdl-card--expand"></div>
+
+                <!--<div class="mdl-card__actions" id="hogehoge3">-->
+                <!--{{range $i, $v := .ResultRanking}}-->
+                <!--<script>-->
+                <!--var a = {{$v.Name |html}};-->
+                <!--document.getElementById("hogehoge2").textContent = a;-->
+
+                <!--var compareOperand = {{$i}};-->
+
+                <!--if (compareOperand == 2) {-->
+                <!--document.getElementById("hogehoge3").textContent = a;-->
+                <!--}-->
+                <!--</script>-->
+                <!--{{end}}-->
+                <!--<span class="demo-card-image__filename" >おおはし</span>-->
+                <!--</div>-->
+
+                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored badge-extend">
+                    <span>1<i class="material-icons"></i></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
 <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--1-col"></div>
     {{range $index, $value := .Person1}}
@@ -237,6 +359,42 @@
     <div class="mdl-cell mdl-cell--1-col"></div>
 </div>
 
+<!--  2位  -->
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--12-col">
+        <p style="text-align: center;"></p>
+        <hr>
+    </div>
+</div>
+
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--12-col">
+            <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-0-1">
+                <div class="mdl-card__title mdl-card--expand"></div>
+
+                <!--<div class="mdl-card__actions" id="hogehoge3">-->
+                <!--{{range $i, $v := .ResultRanking}}-->
+                <!--<script>-->
+                <!--var a = {{$v.Name |html}};-->
+                <!--document.getElementById("hogehoge2").textContent = a;-->
+
+                <!--var compareOperand = {{$i}};-->
+
+                <!--if (compareOperand == 2) {-->
+                <!--document.getElementById("hogehoge3").textContent = a;-->
+                <!--}-->
+                <!--</script>-->
+                <!--{{end}}-->
+                <!--<span class="demo-card-image__filename" >おおはし</span>-->
+                <!--</div>-->
+
+                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored badge-extend">
+                    <span>2<i class="material-icons"></i></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
 <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--1-col"></div>
     {{range $index, $value := .Person2}}
@@ -253,6 +411,42 @@
     </div>
     {{end}}
     <div class="mdl-cell mdl-cell--1-col"></div>
+</div>
+
+<!--  3位  -->
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--12-col">
+        <p style="text-align: center;"></p>
+        <hr>
+    </div>
+</div>
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--12-col">
+        <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-0-2">
+            <div class="mdl-card__title mdl-card--expand"></div>
+
+            <!--<div class="mdl-card__actions" id="hogehoge3">-->
+            <!--{{range $i, $v := .ResultRanking}}-->
+            <!--<script>-->
+            <!--var a = {{$v.Name |html}};-->
+            <!--document.getElementById("hogehoge2").textContent = a;-->
+
+            <!--var compareOperand = {{$i}};-->
+
+            <!--if (compareOperand == 2) {-->
+            <!--document.getElementById("hogehoge3").textContent = a;-->
+            <!--}-->
+            <!--</script>-->
+            <!--{{end}}-->
+            <!--<span class="demo-card-image__filename" >おおはし</span>-->
+            <!--</div>-->
+
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored badge-extend">
+                <span>3<i class="material-icons"></i></span>
+            </button>
+        </div>
+    </div>
 </div>
 
 <div class="mdl-grid">
@@ -273,6 +467,42 @@
     <div class="mdl-cell mdl-cell--1-col"></div>
 </div>
 
+<!--  4位  -->
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--12-col">
+        <p style="text-align: center;"></p>
+        <hr>
+    </div>
+</div>
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--12-col">
+        <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-0-3">
+            <div class="mdl-card__title mdl-card--expand"></div>
+
+            <!--<div class="mdl-card__actions" id="hogehoge3">-->
+            <!--{{range $i, $v := .ResultRanking}}-->
+            <!--<script>-->
+            <!--var a = {{$v.Name |html}};-->
+            <!--document.getElementById("hogehoge2").textContent = a;-->
+
+            <!--var compareOperand = {{$i}};-->
+
+            <!--if (compareOperand == 2) {-->
+            <!--document.getElementById("hogehoge3").textContent = a;-->
+            <!--}-->
+            <!--</script>-->
+            <!--{{end}}-->
+            <!--<span class="demo-card-image__filename" >おおはし</span>-->
+            <!--</div>-->
+
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored badge-extend">
+                <span>4<i class="material-icons"></i></span>
+            </button>
+        </div>
+    </div>
+</div>
+
 <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--1-col"></div>
     {{range $index, $value := .Person4}}
@@ -289,6 +519,42 @@
     </div>
     {{end}}
     <div class="mdl-cell mdl-cell--1-col"></div>
+</div>
+
+<!--  5位  -->
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--12-col">
+        <p style="text-align: center;"></p>
+        <hr>
+    </div>
+</div>
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--12-col">
+        <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-0-4">
+            <div class="mdl-card__title mdl-card--expand"></div>
+
+            <!--<div class="mdl-card__actions" id="hogehoge3">-->
+            <!--{{range $i, $v := .ResultRanking}}-->
+            <!--<script>-->
+            <!--var a = {{$v.Name |html}};-->
+            <!--document.getElementById("hogehoge2").textContent = a;-->
+
+            <!--var compareOperand = {{$i}};-->
+
+            <!--if (compareOperand == 2) {-->
+            <!--document.getElementById("hogehoge3").textContent = a;-->
+            <!--}-->
+            <!--</script>-->
+            <!--{{end}}-->
+            <!--<span class="demo-card-image__filename" >おおはし</span>-->
+            <!--</div>-->
+
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored badge-extend">
+                <span>5<i class="material-icons"></i></span>
+            </button>
+        </div>
+    </div>
 </div>
 
 <div class="mdl-grid">
@@ -308,4 +574,5 @@
     {{end}}
     <div class="mdl-cell mdl-cell--1-col"></div>
 </div>
+
 {{end}}
