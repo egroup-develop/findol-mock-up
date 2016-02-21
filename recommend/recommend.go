@@ -71,7 +71,7 @@ func renderForPhoto(v string, w io.Writer, data map[string]interface{}){
 
 	err := templates.ExecuteTemplate(w, "base", data)
 	if err != nil {
-		//		http.Error(w, err.Error(), http.StatusInternalServerError)
+//		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }
 
@@ -86,7 +86,7 @@ func renderForFindol(v string, w io.Writer, data map[string]interface{}){
 
 	err := templates.ExecuteTemplate(w, "base", data)
 	if err != nil {
-		//		http.Error(w, err.Error(), http.StatusInternalServerError)
+//		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }
 
@@ -105,7 +105,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	/***** JSONパースここから *****/
 	//[]byte型での読み込み
 	file, err := ioutil.ReadFile("./json/logirl_details_id_1to328_array.json") //ロガールid1~328についての詳細
-    json_err := json.Unmarshal(file, &detailDatasets)
+	json_err := json.Unmarshal(file, &detailDatasets)
 	if err != nil {
 		log.Fatal(err)
 		log.Fatal(json_err)
@@ -484,8 +484,8 @@ var tmpTmpArray = []string{"0", "0"}
 var tmpSortTarget = make([]SortTarget, 0)
 //var progress int = 0
 var tmpData = map[string]interface{}{
-"Rank": tmpTmpArray,
-"SortTarget": tmpSortTarget,
+	"Rank": tmpTmpArray,
+	"SortTarget": tmpSortTarget,
 }
 
 /*** 進捗率の計算のためにレンダリングのタイミングを変えた. ここまで ***/
@@ -563,6 +563,7 @@ func handlerSort(w http.ResponseWriter, r *http.Request) {
 			sortTarget = append(sortTarget, SortTarget{accessDataset[rank[i]]["ArticleDetailUrl"][0], accessDataset[rank[i]]["ImageUrl"][0], accessDataset[rank[i]]["Name"][0]})
 		}
 
+
 		c.Infof(rank[0] +  " と " + rank[1] + " どっちの数字が好き?")
 
 		tmpArray := []string{rank[0], rank[1]}
@@ -574,6 +575,13 @@ func handlerSort(w http.ResponseWriter, r *http.Request) {
 
 		//data(view_findol.html)に進捗率を追加_
 		data["Progress"] = "0"
+
+		//過去のデータを紐づけてfindolする用
+		postSortRank := ""
+		for i:=0; i<10; i++{
+			postSortRank += rank[i] + "-"
+		}
+		data["PostSortRank"] = postSortRank
 
 		renderForFindol("./recommend/template/view_findol.html", w, data)
 		return
@@ -587,11 +595,47 @@ func handlerSort(w http.ResponseWriter, r *http.Request) {
 		autoZeroCounter = 0
 		progressCounter = 0
 
-		answer := mergeSort(rank, r, w)
+
+		//POSTされた番号表示
+		c.Infof("")
+		c.Infof("新・POSTされたINDEX: " + r.FormValue("index"))
+		tmpValue := r.FormValue("index")
+		postSortRankArray := make([]string, 0)
+		postSortIndex := make([]string, 0)
+		strTemp := ""
+		appendEvalCount := 0
+		//POSTされた値をソート対象配列(postSortRank)と選択されたパラメータ配列(postSortIndex)に分ける
+		for _, v := range tmpValue{
+			if appendEvalCount < 10 {
+				if v != '-' {
+					strTemp += string(v)
+				}else {
+					postSortRankArray = append(postSortRankArray, strTemp)
+					strTemp = ""
+					appendEvalCount++
+				}
+			}else{
+				postSortIndex = append(postSortIndex, string(v))
+			}
+		}
+
+
+//		answer := mergeSort(rank, r, w)
+		answer := mergeSort(postSortRankArray, r, w)
+		//過去のデータを紐づけてfindolする用
+		postSortRank := ""
+		for i:=0; i<10; i++{
+			postSortRank += answer[i] + "-"
+		}
+		for i:=0; i<len(postSortIndex); i++ {
+			postSortRank += postSortIndex[i]
+		}
+		tmpData["PostSortRank"] = postSortRank
+
 
 		/*** 進捗率の計算. ここから ***/
 		c.Infof("残り " + strconv.Itoa(progressCounter) + "回")
-		//10回のソートは, 自動0が18個から始まる
+		//10回のソートは, 自動0が18個からなる(始まる)
 		showProgress := 18 - progressCounter
 		if showProgress == 0 {
 			c.Infof("進捗率>>>>>>>>>>>>>>>>>>>>>>>>>>>> 0 パーセント")
@@ -680,11 +724,32 @@ func merge(a, b []string, r *http.Request, w http.ResponseWriter)[]string{
 	i, j := 0, 0
 	eval := 0
 
+	tmpValue := r.FormValue("index")
+	postSortRank := make([]string, 0)
+	postSortIndex := make([]string, 0)
+	strTemp := ""
+	appendEvalCount := 0
+	//POSTされた値をソート対象配列(postSortRank)と選択されたパラメータ配列(postSortIndex)に分ける
+	for _, v := range tmpValue{
+		if appendEvalCount < 10 {
+			if v != '-' {
+				strTemp += string(v)
+			}else {
+				postSortRank = append(postSortRank, strTemp)
+				strTemp = ""
+				appendEvalCount++
+			}
+		}else{
+			postSortIndex = append(postSortIndex, string(v))
+		}
+	}
+
 	for i < len(a) && j < len(b){
-		if sortEval == false && indicateCounter == 0 {
+//		if sortEval == false && indicateCounter == 0 {
+		if sortEval == false && len(postSortIndex) == 1 {
 			c.Infof("")
 			c.Infof(a[i] + "と" + b[j] + " どっちの数字が好き?")
-			indicateCounter++
+//			indicateCounter++
 
 			/*** 進捗率の計算のためにレンダリングのタイミングを変えた. ここから ***/
 			tmpSortTarget = make([]SortTarget, 0)
@@ -711,7 +776,12 @@ func merge(a, b []string, r *http.Request, w http.ResponseWriter)[]string{
 				keepArray = append(keepArray, r.FormValue("index"))
 				sortEval = false
 
-				switch r.FormValue("index"){
+
+				selectedIndex := postSortIndex[0]
+
+
+//				switch r.FormValue("index"){
+				switch selectedIndex{
 				case "0":
 					eval = 0
 				case "1":
@@ -752,7 +822,7 @@ func merge(a, b []string, r *http.Request, w http.ResponseWriter)[]string{
 	mergeCounter++
 
 	//マージソート終了時
-	if mergeCounter == len(rank) - 1 {
+	if mergeCounter == len(postSortRank) - 1 {
 		//keepArrayに要素があって, 自動0がされなかったら
 		if autoZeroCounter == 0 {
 			//ここに結果ランキングに投げる処理
@@ -761,7 +831,7 @@ func merge(a, b []string, r *http.Request, w http.ResponseWriter)[]string{
 
 			/*** ユーザの好みで並び替えられた最終的なランキング(rankArray). 上位5件だけ渡しましょうか ここから ***/
 //			rankArray := make([]string, 0)
-//			for i, v:=range keepArray{
+//			for i, v := range keepArray {
 //				if i == 5 {
 //					break
 //				}
@@ -774,7 +844,7 @@ func merge(a, b []string, r *http.Request, w http.ResponseWriter)[]string{
 
 			completeSortEval = true
 			c.Infof("マージ回数: " + strconv.Itoa(mergeCounter) + ", " + "ソート回数: " + strconv.Itoa(len(keepArray)) + ", 選択された数字: ")
-			for _, v:=range keepArray {
+			for _, v := range keepArray {
 				c.Infof(v)
 			}
 			c.Infof("")

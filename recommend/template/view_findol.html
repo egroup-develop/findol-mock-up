@@ -116,20 +116,37 @@
 
 <div class="mdl-grid">
     <!--<div class="mdl-cell mdl-cell&#45;&#45;4-col"></div>-->
-    {{range $i, $v := .SortTarget}}
     <div class="mdl-cell mdl-cell--6-col">
         <form method="POST" action="findol">
-            <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-{{$i}}">
-                <input type="submit" value={{$i}} class="image-jump-to-article" name="index">
+            <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-0">
+                <input type="submit" value={{.PostSortRank |html}}0 class="image-jump-to-article" name="index">
                 <div class="mdl-card__actions">
-                    <span class="demo-card-image__filename">{{$v.Name |html}}</span>
+                    <span class="demo-card-image__filename" id="rename0">パックマン</span>
                 </div>
             </div>
         </form>
     </div>
-    {{end}}
+    <div class="mdl-cell mdl-cell--6-col">
+        <form method="POST" action="findol">
+            <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-1">
+                <input type="submit" value={{.PostSortRank |html}}1 class="image-jump-to-article" name="index">
+                <div class="mdl-card__actions">
+                    <span class="demo-card-image__filename" id="rename1">パックマン</span>
+                </div>
+            </div>
+        </form>
+    </div>
     <!--<div class="mdl-cell mdl-cell&#45;&#45;4-col"></div>-->
 </div>
+
+{{range $i, $v := .SortTarget}}
+<script>
+    var elem = document.getElementById("rename{{$i}}");
+    console.log(elem.textContent);
+    document.getElementById("rename{{$i}}").innerHTML = {{$v.Name |html}};
+    console.log(elem.textContent);
+</script>
+{{end}}
 
 {{end}}
 
