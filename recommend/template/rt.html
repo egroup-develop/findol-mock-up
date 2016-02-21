@@ -1,0 +1,155 @@
+{{define "base"}}
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="./recommend/css/sp.css" media="(min-width: 374px)">
+    <link rel="stylesheet" href="./recommend/css/pc.css" media="(min-width: 1024px)">
+    <title>結果ランキング</title>
+</head>
+<body>
+<div id="wrapper">
+    <ul class="tabs">
+        <!--結果ランキングここから-->
+        <li>
+            <input type="radio" name="tabs" id="tab1" checked/>
+            <div id="tab1">
+                <label for="tab1">結果ランキング</label>
+            </div>
+            <div id="tab-content1" class="tab-content">
+                <div id="ranking_1">
+                    <div id="rt_img_1">
+                        <img src="img/rt_img1.jpg">
+                    </div>
+                    <div class="idol_name">
+                        <div id="name_1">伊藤里織</div>
+                        <div id="unit_1">ハニースパイス</div>
+                        <div id="curled-box_1">
+                            <a href="pl.html"><img src="img/camera.png"></a>
+                        </div>
+                    </div>
+                </div>
+                <div id="ranking_other">
+                    <div class="ranking">
+                        <div class="rt_img">
+                            <img src="img/rt_img2.jpg">
+                        </div>
+                        <div class="idol_name">
+                            <div class="name">水野しず</div>
+                            <div class="unit"></div>
+                            <div class="curled-box">
+                                <a href="pl.html"><img src="img/camera.png"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ranking">
+                        <div class="rt_img">
+                            <img src="img/rt_img3.jpg">
+                        </div>
+                        <div class="idol_name">
+                            <div class="name">最上もが</div>
+                            <div class="unit">でんぱ組.inc</div>
+                            <div class="curled-box">
+                                <a href="pl.html"><img src="img/camera.png"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="ranking">
+                        <div class="rt_img">
+                            <img src="img/rt_img4.jpg">
+                        </div>
+                        <div class="idol_name">
+                            <div class="name">ああああ</div>
+                            <div class="unit">いいいい</div>
+                            <div class="curled-box">
+                                <a href="pl.html"><img src="img/camera.png"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ranking">
+                        <div class="rt_img">
+                            <img src="img/rt_img5.jpg">
+                        </div>
+                        <div class="idol_name">
+                            <div class="name">ええええ</div>
+                            <div class="unit">おおおおおお</div>
+                            <div class="curled-box">
+                                <a href="pl.html"><img src="img/camera.png"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <!-- ここからfooter -->
+                <div id="footer">
+                    <div id="footer_btn">
+                        <a href="dl.html">
+                            <div id="return_dl">
+                                <p>Daily　ランキングに戻る</p>
+                            </div>
+                        </a>
+                        <a href="si.html">
+                            <div id="return_si">
+                                <p>もう一回ソートする!</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <!-- footer終わり -->
+            </div>
+        </li>
+        <!--結果ランキングここまで-->
+        <!--オススメ一覧ここから-->
+        <li>
+            <input type="radio" name="tabs" id="tab2"/>
+            <div id="tab2">
+                <label for="tab2">オススメ一覧</label>
+            </div>
+            <div id="tab-content2" class="tab-content">
+                <!--<p>オヌヌメ一覧</p>-->
+                <a href="pl.html">
+                    <div class="recommend">
+                        <img src="img/rl_img1.jpg">
+                        <p>河村友香</p>
+                    </div>
+                </a>
+                <a href="pl.html">
+                    <div class="recommend">
+                        <img src="img/rl_img1.jpg">
+                        <p>河村友香</p>
+                    </div>
+                </a>
+                <a href="pl.html">
+                    <div class="recommend">
+                        <img src="img/rl_img1.jpg">
+                        <p>河村友香</p>
+                    </div>
+                </a>
+                <a href="pl.html">
+                    <div class="recommend">
+                        <img src="img/rl_img1.jpg">
+                        <p>河村友香</p>
+                    </div>
+                </a>
+                <a href="pl.html">
+                    <div class="recommend">
+                        <img src="img/rl_img1.jpg">
+                        <p>河村友香</p>
+                    </div>
+                </a>
+                <a href="pl.html">
+                    <div class="recommend">
+                        <img src="img/rl_img1.jpg">
+                        <p>河村友香</p>
+                    </div>
+                </a>
+            </div>
+        </li>
+        <!--オススメ一覧ここまで-->
+    </ul>
+</div>
+</body>
+</html>
+{{end}}

@@ -1,0 +1,56 @@
+<!--画像一覧表示-->
+{{define "photoContentBody"}}
+{{range $i, $v := .Person.ImageUrl}}
+<style>
+    .demo-card-image.mdl-card {
+    width: 384px;
+    height: 384px;
+    }
+    .back-image-{{$i}}{
+    background: url({{$v |html}}) center / cover;
+    }
+    .demo-card-image > .mdl-card__actions {
+    height: 52px;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.2);
+    }
+    .demo-card-image__filename {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    }
+</style>
+{{end}}
+
+<!--{{range $i, $v := .Person.ImageUrl}}-->
+<!--<a href={{$v |html}} data-lity>-->
+    <!--<div class="demo-card-image mdl-card mdl-shadow&#45;&#45;2dp back-image-{{$i}}">-->
+        <!--<div class="mdl-card__title mdl-card&#45;&#45;expand"></div>-->
+        <!--&lt;!&ndash;<div class="mdl-card__actions">&ndash;&gt;-->
+            <!--&lt;!&ndash;<span class="demo-card-image__filename">{{$i}}</span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--</div>-->
+<!--</a>-->
+<!--<br>-->
+<!--{{end}}-->
+
+
+<style>
+    .box {
+        display: inline-block;
+    }
+</style>
+
+<div class="mdl-cell mdl-cell--12-col list-box" style="text-align: center;">
+{{range $i, $v := .Person.ImageUrl}}
+    <a href={{$v |html}} data-lity>
+        <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-{{$i}} box">
+            <div class="mdl-card__title mdl-card--expand"></div>
+            <!--<div class="mdl-card__actions">-->
+            <!--<span class="demo-card-image__filename">{{$i}}</span>-->
+            <!--</div>-->
+        </div>
+    </a>
+{{end}}
+</div>
+{{end}}

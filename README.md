@@ -1,1 +1,0 @@
-# findol-mock-up

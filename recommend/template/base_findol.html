@@ -1,0 +1,149 @@
+{{define "base"}}
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>アイ択</title>
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- link rel="stylesheet" href="../../css/sp.css" media="(min-width: 374px)">
+    <link rel="stylesheet" href="../../css/pc.css" media="(min-width: 1024px)" -->
+
+    <script type="text/javascript">
+    window.onload = function() {
+        document.getElementById('gg0').style.display = 'none';
+        document.getElementById('gg').style.display = 'block';
+    }
+    </script>
+    <style type="text/css">
+        #gg {
+        display: none;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div id="gg0" style="text-align: center">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title"><font size="5">FinDoL</font></span>
+            </div>
+            <!-- Tabs -->
+            <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+                <a href="#scroll-tab-1" class="mdl-layout__tab is-active"><font size="5">アイ択</font></a>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title"><b>FinDoL</b></span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="/findol"><font size="4">アイ択</font></a>
+                <a class="mdl-navigation__link" href="//logirl.favclip.com/"><font size="4">LoGiRL</font></a>
+                <!--<a class="mdl-navigation__link" href="">Link</a>-->
+                <!--<a class="mdl-navigation__link" href="">Link</a>-->
+                <!--<a class="mdl-navigation__link" href="">Link</a>-->
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+        </main>
+
+        <style>
+            #back{
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            }
+        </style>
+        <!--<button class="mdl-button mdl-js-button mdl-button&#45;&#45;fab mdl-button&#45;&#45;colored" id="back">-->
+        <!--<i class="material-icons">add</i>-->
+        <!--</button>-->
+
+
+        <!-- footer -->
+        <style>
+            #footer1{
+            background-color: #2E2E2E;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            color : #fff;
+            margin-top:30px;
+            }
+        </style>
+        <div id="footer1">2016 FinDoL Project</div>
+    </div>
+</div>
+
+
+<div id="gg">
+    <!-- Simple header with scrollable tabs. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title"><font size="5">FinDoL</font></span>
+            </div>
+            <!-- Tabs -->
+            <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+                <a href="#scroll-tab-1" class="mdl-layout__tab is-active"><font size="5">アイ択</font></a>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title"><b>FinDoL</b></span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="/findol"><font size="4">アイ択</font></a>
+                <a class="mdl-navigation__link" href="//logirl.favclip.com/"><font size="4">LoGiRL</font></a>
+                <!--<a class="mdl-navigation__link" href="">Link</a>-->
+                <!--<a class="mdl-navigation__link" href="">Link</a>-->
+                <!--<a class="mdl-navigation__link" href="">Link</a>-->
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <section class="mdl-layout__tab-panel is-active" id="scroll-tab-1">
+                <div class="page-content">
+                    <div class="content container bg-default">
+                        {{template "findolContentProgress" .}}
+                        {{template "findolContentBody" .}}
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <style>
+            #back{
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            }
+        </style>
+        <!--<button class="mdl-button mdl-js-button mdl-button&#45;&#45;fab mdl-button&#45;&#45;colored" id="back">-->
+        <!--<i class="material-icons">add</i>-->
+        <!--</button>-->
+
+
+        <!-- footer -->
+        <style>
+            #footer{
+            background-color: #2E2E2E;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            color : #fff;
+            margin-top:30px;
+            }
+        </style>
+        <div id="footer">2016 FinDoL Project</div>
+    </div>
+</div>
+
+<script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</body>
+</html>
+{{end}}
