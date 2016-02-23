@@ -1,17 +1,10 @@
 package recommend
 
 import (
-	"appengine"
 	"io/ioutil"
 	"log"
 	"encoding/json"
 )
-
-type Person struct {
-	Id int
-	Score int
-	Rank int
-}
 
 /**
  * {n|0<=n<328}
@@ -44,16 +37,4 @@ func getFace(n int)string{
 	}
 
 	return detailDatasets[n].ImageUrl[0]
-}
-
-/**
- * init.jsで使うコンストラクタ
- */
-func NewPerson(id, score int)*Person{
-	p := new(Person)
-	p.Id = id
-	p.Score = score
-	p.Rank = 0
-
-	return p
 }
