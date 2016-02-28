@@ -223,11 +223,15 @@
      */
     imageUrls = [];
     names = [];
+    idolsId = [];
     {{range $i, $v := .NameArray}}
         names[{{$i}}] = {{$v}};
     {{end}}
     {{range $i, $v := .FaceArray}}
         imageUrls[{{$i}}] = {{$v}};
+    {{end}}
+    {{range $i, $v := .TargetIdArray}}
+        idolsId[{{$i}}] = {{$v |html}};
     {{end}}
 
     //開始
@@ -248,6 +252,7 @@
         document.getElementById("rightCell").innerHTML　= rFactor;
 
         nSort++;
+        console.log(idolsId);
     }
 
     /**
@@ -337,14 +342,44 @@
     function showResult() {
         str = "<table id=\"resultTable\">" + "<tr><th>順位<\/th><th>名前<\/th><\/tr>";
 
+        postArray = [];
         for(var i = 0; i < idols.length; i++) {
             str += "<tr><td class = \"score\">" + idols[i].rank + "位<\/td>" + "<td class=\"name\" " + ">" + names[idols[i].id] + "<\/td><\/tr>";
-            console.log(idols[i].id);
+            postArray.push(idols[i].id);
         }
 
         str += "<\/table><br>";
 
         document.getElementById("selected").innerHTML = str;
+
+        postQuery0 = idolsId[parseInt(postArray[0])];
+        postQuery1 = idolsId[parseInt(postArray[1])];
+        postQuery2 = idolsId[parseInt(postArray[2])];
+        postQuery3 = idolsId[parseInt(postArray[3])];
+        postQuery4 = idolsId[parseInt(postArray[4])];
+//        postQuery0 = postArray[0];
+//        postQuery1 = postArray[1];
+//        postQuery2 = postArray[2];
+//        postQuery3 = postArray[3];
+//        postQuery4 = postArray[4];
+
+        //ソート結果をサーバにPOST. リダイレクトしながらpostする.
+//        $.ajax({
+//            type: "POST",
+//            url: "recommend",
+//            data: {
+//                postArray: postArray
+//            }
+//        });
+        form = $('<form action="' + 'recommend' + '" method="post">' +
+            '<input type="text" name="postArray[]" value="' + postQuery0.toString() + '"/>' +
+            '<input type="text" name="postArray[]" value="' + postQuery1.toString() + '"/>' +
+            '<input type="text" name="postArray[]" value="' + postQuery2.toString() + '"/>' +
+            '<input type="text" name="postArray[]" value="' + postQuery3.toString() + '"/>' +
+            '<input type="text" name="postArray[]" value="' + postQuery4.toString() + '"/>' +
+            '</form>');
+        $("body").append(form);
+        form.submit();
     }
 
     /**

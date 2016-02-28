@@ -81,6 +81,17 @@ func renderForPhoto(v string, w io.Writer, data map[string]interface{}){
 func handler(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
 
+	//二者択一の結果を受け取る
+	pipeRankAry := make([]string, 0)
+	if r.Method == "POST" {
+		r.ParseForm()
+		receivedQuery := r.Form["postArray[]"]
+		for i:= 0; i<5; i++{
+			c.Infof(receivedQuery[i])
+		}
+		pipeRankAry = receivedQuery
+	}
+
 	var detailDatasets []DetailDataset
 	var featureDatasets []FeatureDataset
 
@@ -393,18 +404,18 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	c.Infof("Requested URL: %v", r.URL.Path[1:])
 	c.Infof("ほげえええええええええええええ" + "\n")
 
-	if r.Method == "POST"{
-		c.Infof(r.FormValue("index"))
-
-		/***** テンプレーティングここから *****/
-		index, _ := strconv.Atoi(r.FormValue("index"))
-
-		data = map[string]interface{}{
-			"Person": person[index],
-		}
-		renderForPhoto("./recommend/template/view_photo.html", w, data)
-		/***** テンプレーティングここまで *****/
-	}
+//	if r.Method == "POST"{
+//		c.Infof(r.FormValue("index"))
+//
+//		/***** テンプレーティングここから *****/
+//		index, _ := strconv.Atoi(r.FormValue("index"))
+//
+//		data = map[string]interface{}{
+//			"Person": person[index],
+//		}
+//		renderForPhoto("./recommend/template/view_photo.html", w, data)
+//		/***** テンプレーティングここまで *****/
+//	}
 }
 
 func handlerList(w http.ResponseWriter, r *http.Request) {
