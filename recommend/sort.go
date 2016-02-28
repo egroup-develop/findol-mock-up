@@ -29,19 +29,12 @@ func renderForFindol(v string, w io.Writer, data map[string]interface{}){
 
 	err := templates.ExecuteTemplate(w, "base", data)
 	if err != nil {
-//		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }
 
 /**
  * Findolのメインページの処理
  */
-type SortTarget struct {
-	ArticleDetailUrl string
-	ImageUrl string
-	Name string
-}
-
 func handlerSort(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
 
@@ -59,7 +52,6 @@ func handlerSort(w http.ResponseWriter, r *http.Request) {
 
 		//乱数で10人アイドルを選出
 		idolsArray := make([]string, 0)
-		idols := ""
 		i := 0
 		for i < 10 {
 			j := 0
@@ -78,7 +70,6 @@ func handlerSort(w http.ResponseWriter, r *http.Request) {
 
 			if doubleEval == 0 {
 				idolsArray = append(idolsArray, comper)
-				idols += idolsArray[i] + "-"
 				i += 1
 			}
 		}
@@ -91,48 +82,22 @@ func handlerSort(w http.ResponseWriter, r *http.Request) {
 			faceArray = append(faceArray, getFace(tmp))
 		}
 
-		c.Infof(idolsArray[0] +  " と " + idolsArray[1] + " どっちの数字が好き?")
-
 		data := map[string]interface{}{
-			"Idols": idols,  // 無作為に抽出器した10人(string, ハイフン繋ぎ)
 			"NameArray": nameArray,  // ソートする人の名前(string, 配列)
 			"FaceArray": faceArray,  // ソートする人の画像URL(string, 配列)
 			"TargetIdArray": idolsArray,  // ソートする人のID
 			"IdolLength": strconv.Itoa(len(idolsArray)),  // ソート要素数
 		}
 
-		c.Infof("----- GET -----")
-
 		renderForFindol("./recommend/template/view_findol.html", w, data)
 
 		return
 	}else{
-		/*** ソートに係る全ての処理が終わったら結果ランキングへ上位5件結果(rankArray)を送る. ここから ***/
 		r.ParseForm()
 		receivedQuery := r.Form["postArray[]"]
-		for i:= 0; i<5; i++{
+		for i := 0; i < 5; i++{
 			c.Infof(receivedQuery[i])
 		}
-//		if completeSortEval {
-//			rankArray := make([]string, 0)
-//			for i, v:=range tmp{
-//				if i == 5 {
-//					break
-//				}
-//				rankArray = append(rankArray, v)
-//			}
-//
-//			pipeRankAry = make([]string, 0)
-//			pipeRankAry = rankArray
-//			c.Infof("送る結果:::")
-//			for _, v:=range pipeRankAry {
-//				c.Infof(v)
-//			}
-//			//結果ランキングの各人の画像を表示するためにpersonを初期化
-//			person = make([]Person, 0)
-//			http.Redirect(w, r, "/recommend", http.StatusFound)
-//		}
-		/*** ソートに係る全ての処理が終わったら結果ランキングへ上位5件結果(rankArray)を送る. ここまで ***/
 	}
 }
 

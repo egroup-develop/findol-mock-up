@@ -403,19 +403,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	//スライスしてパスの先頭スラッシュを除去
 	c.Infof("Requested URL: %v", r.URL.Path[1:])
 	c.Infof("ほげえええええええええええええ" + "\n")
-
-//	if r.Method == "POST"{
-//		c.Infof(r.FormValue("index"))
-//
-//		/***** テンプレーティングここから *****/
-//		index, _ := strconv.Atoi(r.FormValue("index"))
-//
-//		data = map[string]interface{}{
-//			"Person": person[index],
-//		}
-//		renderForPhoto("./recommend/template/view_photo.html", w, data)
-//		/***** テンプレーティングここまで *****/
-//	}
 }
 
 func handlerList(w http.ResponseWriter, r *http.Request) {
