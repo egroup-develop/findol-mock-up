@@ -20,7 +20,9 @@ func getName(n int)string{
 		log.Fatal(json_err)
 	}
 
-	return detailDatasets[n].Name
+	accessId := (len(detailDatasets) - 1) - n
+
+	return detailDatasets[accessId].Name
 }
 
 /**
@@ -36,5 +38,7 @@ func getFace(n int)string{
 		log.Fatal(json_err)
 	}
 
-	return detailDatasets[n].ImageUrl[0]
+	accessId := (len(detailDatasets) - 1) - n
+
+	return detailDatasets[accessId].ImageUrl[0]
 }
