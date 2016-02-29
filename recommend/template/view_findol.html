@@ -8,8 +8,8 @@
     width: 512px;
     height: 512px;
     }
-    .back-image-{{$i}}{
-    background: url({{$v |html}}) center / cover;
+    #back-image-{{$i}}{
+        background: center/cover;
     }
     .demo-card-image > .mdl-card__actions {
     height: 104px;
@@ -35,8 +35,8 @@
     width: 256px;
     height: 256px;
     }
-    .back-image-{{$i}}{
-    background: url({{$v |html}}) center / cover;
+    #back-image-{{$i}}{
+    background: center/cover;
     }
     .demo-card-image > .mdl-card__actions {
     height: 52px;
@@ -86,7 +86,7 @@
 <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--6-col">
         <!--<form>-->
-            <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-0">
+            <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-0" id="back-image-0">
                 <input type="submit" class="image-jump-to-article">
                 <div class="mdl-card__actions">
                     <span class="demo-card-image__filename" id="rename0">パックマン</span>
@@ -96,7 +96,7 @@
     </div>
     <div class="mdl-cell mdl-cell--6-col">
         <!--<form>-->
-            <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-1">
+            <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-1" id="back-image-1">
                 <input type="submit" class="image-jump-to-article">
                 <div class="mdl-card__actions">
                     <span class="demo-card-image__filename" id="rename1">パックマン</span>
@@ -106,59 +106,42 @@
     </div>
 </div>
 <div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--5-col">
-        <div id="leftCell">
-        </div>
-    </div>
-    <div class="mdl-cell mdl-cell--2-col"></div>
-    <div class="mdl-cell mdl-cell--5-col">
-        <div id="rightCell">
-        </div>
-    </div>
-</div>
-<div class="mdl-grid">
     <div class="mdl-cell mdl-cell--5-col"></div>
     <div class="mdl-cell mdl-cell--2-col">
         <div id="centerCell">
-            <button>
-                引き分け
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                <font size="3"><b>引き分け</b></font>
             </button>
         </div>
     </div>
     <div class="mdl-cell mdl-cell--5-col"></div>
 </div>
-<div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--5-col"></div>
-    <div class="mdl-cell mdl-cell--2-col">
-        <div id="times"></div>
-    </div>
-    <div class="mdl-cell mdl-cell--5-col"></div>
-</div>
-<div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--5-col"></div>
-    <div class="mdl-cell mdl-cell--2-col">
-        <div id="selected"></div>
-    </div>
-    <div class="mdl-cell mdl-cell--5-col"></div>
-</div>
 
-{{range $i, $v := .NameArray}}
-<script>
-    if({{$i}} == 0){
-        elem = document.getElementById("rename0");
-        console.log(elem.textContent);
-        document.getElementById("rename0").innerHTML = {{$v |html}};
-        console.log(elem.textContent);
-    }else if({{$i}} == 1){
-        elem = document.getElementById("rename1");
-        console.log(elem.textContent);
-        document.getElementById("rename1").innerHTML = {{$v |html}};
-        console.log(elem.textContent);
-    }
-</script>
-<button>{{$v |html}}</button>
-<span id="moga-{{$i}}">{{$v |html}}</span>
-{{end}}
+<!--{{range $i, $v := .NameArray}}-->
+<!--<script>-->
+    <!--if({{$i}} == 0){-->
+        <!--elem = document.getElementById("rename0");-->
+        <!--console.log(elem.textContent);-->
+        <!--document.getElementById("rename0").innerHTML = {{$v |html}};-->
+        <!--console.log(elem.textContent);-->
+    <!--}else if({{$i}} == 1){-->
+        <!--elem = document.getElementById("rename1");-->
+        <!--console.log(elem.textContent);-->
+        <!--document.getElementById("rename1").innerHTML = {{$v |html}};-->
+        <!--console.log(elem.textContent);-->
+    <!--}-->
+<!--</script>-->
+<!--<button>{{$v |html}}</button>-->
+<!--<span id="moga-{{$i}}">{{$v |html}}</span>-->
+<!--{{end}}-->
+
+
+<!--<script>-->
+    <!--(function() {-->
+        <!--document.getElementById("back-image-0").style.backgroundImage = "url(http://ucon.favclip.com/api/download/77b7f307-62ca-44d6-b007-e9f6267c7b7f)";-->
+        <!--document.getElementById("back-image-1").style.backgroundImage = "url(http://ucon.favclip.com/api/download/742dc74d-dbbb-461c-ac36-8e28317d54b0)";-->
+    <!--})();-->
+<!--</script>-->
 
 <script>
     //選択されたかどうかで初期化するかしないか用
@@ -203,12 +186,12 @@
             mergeSort(0);
         }
     }
-    document.getElementById("leftCell").onclick = function(){
+    document.getElementById("back-image-0").onclick = function(){
         if (sorted == false){
             mergeSort(-1);
         }
     }
-    document.getElementById("rightCell").onclick = function(){
+    document.getElementById("back-image-1").onclick = function(){
         if (sorted == false){
             mergeSort(1);
         }
@@ -241,15 +224,18 @@
      * 状態表示
      */
     function showState() {
-        nowState = nSort + "回目" + "</br>" + "進行率" + Math.floor(finishSize * 100 / totalSize) + "%";
+        document.getElementById("timesPer").style.width = Math.floor(finishSize * 100 / totalSize) + "%";
+        document.getElementById("showTimesPer").innerHTML = Math.floor(finishSize * 100 / totalSize) + "%";
+        document.getElementById("times").innerHTML = nSort + "回目";
 
         //比較要素の画像URL埋め込み
-        lFactor = "<img src='" + imageUrls[idolsArray[tmp1i][tmp1j]] + "' width='150'" + "<br>" + names[idolsArray[tmp1i][tmp1j]];
-        rFactor = "<img src='" + imageUrls[idolsArray[tmp2i][tmp2j]] + "' width='150'" + "<br>" + names[idolsArray[tmp2i][tmp2j]];
+        lFactor = "url(" + imageUrls[idolsArray[tmp1i][tmp1j]] + ")";
+        rFactor = "url(" + imageUrls[idolsArray[tmp2i][tmp2j]] + ")";
 
-        document.getElementById("times").innerHTML = nowState;
-        document.getElementById("leftCell").innerHTML　= lFactor;
-        document.getElementById("rightCell").innerHTML　= rFactor;
+        document.getElementById("back-image-0").style.backgroundImage = lFactor
+        document.getElementById("back-image-1").style.backgroundImage = rFactor
+        document.getElementById("rename0").innerHTML = names[idolsArray[tmp1i][tmp1j]];
+        document.getElementById("rename1").innerHTML = names[idolsArray[tmp2i][tmp2j]];
 
         nSort++;
         console.log(idolsId);
@@ -549,8 +535,10 @@
         }
 
         if(tmp1i < 0){
-            str = (nSort - 1) + "回目" + "</br>" + "進行率" + Math.floor(finishSize * 100 / totalSize) + "%";
-            document.getElementById("times").innerHTML = str;
+            document.getElementById("timesPer").style.width = Math.floor(finishSize * 100 / totalSize) + "%";
+            document.getElementById("showTimesPer").innerHTML = Math.floor(finishSize * 100 / totalSize) + "%";
+            document.getElementById("times").innerHTML = (nSort - 1) + "回目";
+
             sorted = true;
 
             calcScore();
@@ -577,6 +565,15 @@
 
 <p> </p>
 <p class="center"><font size="5"><b>気になる方をタップ！</b></font></p>
+<p class="center"><font size="4"><b><span id="times"></span></b></font></p>
 <p> </p>
+
+<div class="progress">
+    <div class="progress-bar progress-bar-success" id="timesPer"></div>
+    <p class="leftside"><font size="4"><span id="showTimesPer"></span></font></p>
+</div>
+
+<p> </p>
+<p class="center"><font size="4"><b><span id="selected"></span></b></font></p>
 
 {{end}}
