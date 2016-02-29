@@ -1,6 +1,6 @@
 <!--画像一覧表示-->
 {{define "photoContentBody"}}
-{{range $i, $v := .Person.ImageUrl}}
+{{range $i, $v := .ImageUrlsArray}}
 <style>
     .demo-card-image.mdl-card {
     width: 384px;
@@ -42,7 +42,7 @@
 </style>
 
 <div class="mdl-cell mdl-cell--12-col list-box" style="text-align: center;">
-{{range $i, $v := .Person.ImageUrl}}
+{{range $i, $v := .ImageUrlsArray}}
     <a href={{$v |html}} data-lity>
         <div class="demo-card-image mdl-card mdl-shadow--2dp back-image-{{$i}} box">
             <div class="mdl-card__title mdl-card--expand"></div>

@@ -100,10 +100,9 @@
 <p> </p>
 
 {{range $i, $v := .ResultRanking}}
-<form method="POST" action="recommend/photolist">
-<div class="demo-card-image mdl-card mdl-shadow--2dp back-image-{{$i}}">
+<div class="demo-card-image mdl-card mdl-shadow--2dp back-image-{{$i}}" id="ranking-{{$i}}">
     <!--<div class="mdl-card__title mdl-card&#45;&#45;expand"></div>-->
-    <input type="submit" value={{$i}} class="image-jump-to-article" name="index">
+    <input type="submit" class="image-jump-to-article">
     <div class="mdl-card__actions">
         <span class="demo-card-image__filename">{{$v.Name |html}}</span>
     </div>
@@ -113,9 +112,113 @@
     </button>
 
 </div>
-</form>
 <br>
 {{end}}
+
+<!--<div id="postArrayConfirm">-->
+    <!--<button>-->
+        <!--たしかめ-->
+    <!--</button>-->
+<!--</div>-->
+<script>
+    <!--document.getElementById("postArrayConfirm").onclick = function(){-->
+        <!--console.log("ほげほげ");-->
+        <!--{{range $i, $v := .PostImageUrls}}-->
+            <!--console.log("-&#45;&#45;&#45;&#45;{{$i}}-&#45;&#45;&#45;&#45;");-->
+            <!--console.log({{$v |html}});-->
+        <!--{{end}}-->
+    <!--}-->
+
+    //サーバから受け取る各人の画像URL
+    imageUrls = [];
+    {{range $i, $v := .PostImageUrls}}
+        imageUrls[{{$i}}] = {{$v |html}};
+    {{end}}
+
+    postImageUrl0 = [];
+    postImageUrl1 = [];
+    postImageUrl2 = [];
+    postImageUrl3 = [];
+    postImageUrl4 = [];
+    counter = 0;
+
+    for(var i = 0; i < 20; i++){
+        if(counter % 4 == 0){
+            counter = 0;
+        }
+
+        if(i >= 0 && i < 4){
+            postImageUrl0[counter] = imageUrls[i];
+            console.log(postImageUrl0[counter] = imageUrls[i]);
+        }else if(i >= 4 && i < 8){
+            postImageUrl1[counter] = imageUrls[i];
+            console.log(postImageUrl1[counter] = imageUrls[i]);
+        }else if(i >= 8 && i < 12){
+            postImageUrl2[counter] = imageUrls[i];
+            console.log(postImageUrl2[counter] = imageUrls[i]);
+        }else if(i >= 12 && i < 16){
+            postImageUrl3[counter] = imageUrls[i];
+            console.log(postImageUrl3[counter] = imageUrls[i]);
+        }else if(i >= 16 && i < 20){
+            postImageUrl4[counter] = imageUrls[i];
+            console.log(postImageUrl4[counter] = imageUrls[i]);
+        }
+
+        counter++;
+    }
+
+    document.getElementById("ranking-0").onclick = function(){
+        form = $('<form action="' + 'recommend/photolist' + '" method="post">' +
+            '<input type="hidden" name="postImageUrlArray[]" value="' + postImageUrl0[0].toString() + '"/>' +
+            '<input type="hidden" name="postImageUrlArray[]" value="' + postImageUrl0[1].toString() + '"/>' +
+            '<input type="hidden" name="postImageUrlArray[]" value="' + postImageUrl0[2].toString() + '"/>' +
+            '<input type="hidden" name="postImageUrlArray[]" value="' + postImageUrl0[3].toString() + '"/>' +
+            '</form>');
+        $("body").append(form);
+        form.submit();
+    }
+    document.getElementById("ranking-1").onclick = function(){
+        form = $('<form action="' + 'recommend/photolist' + '" method="post">' +
+            '<input type="hidden" name="postImageUrlArray[]" value="' + postImageUrl1[0].toString() + '"/>' +
+            '<input type="hidden" name="postImageUrlArray[]" value="' + postImageUrl1[1].toString() + '"/>' +
+            '<input type="hidden" name="postImageUrlArray[]" value="' + postImageUrl1[2].toString() + '"/>' +
+            '<input type="hidden" name="postImageUrlArray[]" value="' + postImageUrl1[3].toString() + '"/>' +
+            '</form>');
+        $("body").append(form);
+        form.submit();
+    }
+    document.getElementById("ranking-2").onclick = function(){
+        form = $('<form action="' + 'recommend/photolist' + '" method="post">' +
+            '<input type="hidden" name="postImageUrlArray[]" value="' + postImageUrl2[0].toString() + '"/>' +
+            '<input type="hidden" name="postImageUrlArray[]" value="' + postImageUrl2[1].toString() + '"/>' +
+            '<input type="hidden" name="postImageUrlArray[]" value="' + postImageUrl2[2].toString() + '"/>' +
+            '<input type="hidden" name="postImageUrlArray[]" value="' + postImageUrl2[3].toString() + '"/>' +
+            '</form>');
+        $("body").append(form);
+        form.submit();
+    }
+    document.getElementById("ranking-3").onclick = function(){
+        form = $('<form action="' + 'recommend/photolist' + '" method="post">' +
+            '<input type="hidden" name="postImageUrlArray[]" value="' + postImageUrl3[0].toString() + '"/>' +
+            '<input type="hidden" name="postImageUrlArray[]" value="' + postImageUrl3[1].toString() + '"/>' +
+            '<input type="hidden" name="postImageUrlArray[]" value="' + postImageUrl3[2].toString() + '"/>' +
+            '<input type="hidden" name="postImageUrlArray[]" value="' + postImageUrl3[3].toString() + '"/>' +
+            '</form>');
+        $("body").append(form);
+        form.submit();
+    }
+    document.getElementById("ranking-4").onclick = function(){
+        form = $('<form action="' + 'recommend/photolist' + '" method="post">' +
+            '<input type="hidden" name="postImageUrlArray[]" value="' + postImageUrl4[0].toString() + '"/>' +
+            '<input type="hidden" name="postImageUrlArray[]" value="' + postImageUrl4[1].toString() + '"/>' +
+            '<input type="hidden" name="postImageUrlArray[]" value="' + postImageUrl4[2].toString() + '"/>' +
+            '<input type="hidden" name="postImageUrlArray[]" value="' + postImageUrl4[3].toString() + '"/>' +
+            '</form>');
+        $("body").append(form);
+        form.submit();
+    }
+</script>
+
 {{end}}
 
 

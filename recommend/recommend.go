@@ -86,7 +86,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		r.ParseForm()
 		receivedQuery := r.Form["postArray[]"]
-		for i:= 0; i<5; i++{
+		for i := 0; i < 5; i++{
 			c.Infof(receivedQuery[i])
 		}
 		pipeRankAry = receivedQuery
@@ -153,6 +153,10 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	imageUrl := detailDatasets[0].ImageUrl[0]
 	name := detailDatasets[0].Name
 
+	//各人の画像4枚を保持
+//	postImageUrls := make(map[string][]string)
+	postImageUrls := make([]string, 0)
+
 	articleDetailUrlAry := make([]string, 0)
 	imageUrlAry := make([]string, 0)
 	nameAry := make([]string, 0)
@@ -165,6 +169,9 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		imageUrlAryForPhoto := accessDataset[testRankAry[i]]["ImageUrl"]
 
 		person = append(person, Person{articleDetailUrlAry[len(articleDetailUrlAry) - 1], indexAry[len(indexAry) - 1], imageUrlAryForPhoto, nameAry[len(nameAry) - 1]})
+
+//		postImageUrls[strconv.Itoa(i)] = imageUrlAryForPhoto
+		postImageUrls = append(postImageUrls, imageUrlAryForPhoto[0], imageUrlAryForPhoto[1], imageUrlAryForPhoto[2], imageUrlAryForPhoto[3])
 	}
 	/***** 結果ランキングの表示用ここまで *****/
 
@@ -394,6 +401,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		"Person3": person3,
 		"Person4": person4,
 		"Person5": person5,
+		"PostImageUrls": postImageUrls,
 	}
 	render("./recommend/template/view.html", w, data)
 	/***** テンプレーティングここまで *****/
@@ -412,16 +420,20 @@ func handlerList(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusNotFound)
 		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		fmt.Fprintf(w, "Not Found")
+
 		return
 	}else {
-		//POSTされた番号表示
-		c.Infof(r.FormValue("index"))
+		r.ParseForm()
+
+		//receivedQuery...["url1", "url2", "url3", "url4"]
+		receivedQuery := r.Form["postImageUrlArray[]"]
+		for i := 0; i < 4; i++{
+			c.Infof(receivedQuery[i])
+		}
 
 		/***** テンプレーティングここから *****/
-		index, _ := strconv.Atoi(r.FormValue("index"))
-
 		data := map[string]interface{}{
-			"Person": person[index],
+			"ImageUrlsArray": receivedQuery,
 		}
 		renderForPhoto("./recommend/template/view_photo.html", w, data)
 		/***** テンプレーティングここまで *****/
